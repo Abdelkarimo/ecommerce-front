@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primary: #000080; /* navvar,footer */
+  --color-secondary: #1b263b; /* Cards, Headings */
+  --color-accent: #7a85c1; /* add to cart */
+  --color-btn: #3b38a0; /* buttons, borders */
+  --color-background: #e0e1dd; /* background */
+  --color-text: #1b263b;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
