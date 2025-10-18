@@ -1,9 +1,13 @@
 <h1 style="text-align: center;" class="m-5">Products</h1>
 
-<div id="product-list" class="product-grid d-flex gap-5 container">
+<div id="product-list" class="product-grid d-flex flex-wrap gap-4 justify-content-center container">
 
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-
-
+  @for(product of products ;track product.id){
+  <app-product-card [product]=" product"></app-product-card>
+  }
+  @empty {
+  <div class="text-center text-muted py-5">
+    <h5>No products found</h5>
+  </div>
+  }
 </div>
