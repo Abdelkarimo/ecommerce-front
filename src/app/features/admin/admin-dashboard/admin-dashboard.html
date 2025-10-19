@@ -1,1 +1,90 @@
-<p>admin-dashboard works!</p>
+<div class="container my-5 pt-5">
+  <h2 class="text-primary text-center mb-4">
+    <i class="fa-solid fa-gauge me-2"></i>Admin Dashboard
+  </h2>
+
+  <!-- Summary Cards -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center p-3">
+        <h5>Total Users</h5>
+        <h3 class="text-success">{{ totalUsers }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center p-3">
+        <h5>Total Orders</h5>
+        <h3 class="text-info">{{ totalOrders }}</h3>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card shadow-sm text-center p-3">
+        <h5>Pending Orders</h5>
+        <h3 class="text-warning">{{ pendingOrders }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <i class="fa-solid fa-users me-2"></i>Users List
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Orders Table -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-secondary text-white">
+      <i class="fa-solid fa-box me-2"></i>Orders List
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.user }}</td>
+            <td>${{ order.total }}</td>
+            <td>
+              <span [ngClass]="{
+                'badge bg-success': order.status === 'Delivered',
+                'badge bg-warning text-dark': order.status === 'Pending'
+              }">
+                {{ order.status }}
+              </span>
+            </td>
+            <td>{{ order.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
