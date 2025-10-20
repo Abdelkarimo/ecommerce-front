@@ -1,1 +1,41 @@
-<app-navbar></app-navbar>
+<!-- Hero Section -->
+<div class="background-img">
+  <header class="hero d-flex flex-column justify-content-center align-items-center text-center text-light">
+    <div>
+      <h1 class="display-4 fw-bold">Welcome to Shop</h1>
+      <p class="lead">Find your style. Shop smart. Live better.</p>
+      <a routerLink="/products" class="btn btn-primary btn-lg mt-3">Shop Now</a>
+    </div>
+  </header>
+
+  <!-- Categories Section -->
+  <section class="container text-center py-5">
+    <h2 class="fw-bold mb-5 text-light">Our Categories</h2>
+    <div class="row g-4">
+      @for (category of categories; track category.name) {
+      <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm category-card h-100 text-light">
+          <img [src]="category.image" class="card-img-top" [alt]="category.name" />
+          <div class="card-body">
+            <h5 class="card-title">{{ category.name }}</h5>
+            <p class="card-text">{{ category.description }}</p>
+            <a [routerLink]="['/category-list']" [queryParams]="{ category: category.name }"
+              class="btn btn-primary btn-sm">
+              View Products
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+</div>
+
+<!-- Call to Action -->
+<section class="cta-section bg-primary text-light text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold">Ready to Start Shopping?</h2>
+    <p>Join our community and enjoy exclusive deals and offers.</p>
+    <a routerLink="/register" class="btn btn-light btn-lg mt-2">Get Started</a>
+  </div>
+</section>

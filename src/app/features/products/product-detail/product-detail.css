@@ -1,0 +1,24 @@
+.container {
+  max-width: 1200px;
+}
+
+h2 {
+  color: #222;
+}
+
+img.img-thumbnail:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.card {
+  border-radius: 16px;
+}
+
+.card-footer button {
+  border-radius: 8px;
+}
