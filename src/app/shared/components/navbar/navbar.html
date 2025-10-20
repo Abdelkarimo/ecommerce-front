@@ -66,6 +66,18 @@
                 <i class="fa-solid fa-cart-shopping me-2"></i> Cart
               </a>
             </li>
+
+            
+              <!-- admin -->
+               @if(currentUser?.role === 'admin'){
+              <li class="nav-item">
+                <a class="nav-link d-flex align-items-center px-3"
+                  routerLink="/admin"
+                  routerLinkActive="active-link">
+                  <i class="fa-solid fa-user-shield me-2"></i> Admin
+                </a>
+              </li>
+            }
           </ul>
         }
       </div>
