@@ -8,5 +8,17 @@ import { RouterLink } from "@angular/router";
   styleUrl: './navbar.css'
 })
 export class Navbar {
+  @Input() showLinks: boolean = true;
+
+  currentUser : any;
+  constructor(public auth: Auth) {}
+  logout() {
+    this.auth.logout();
+  }
+
+  ngOnInit(): void {
+      this.currentUser = this.auth.getCurrentUser();
+  }
+
 
 }
