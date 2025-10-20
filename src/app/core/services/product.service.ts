@@ -7,12 +7,12 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'https://dummyjson.com/products?limit=100';
+  private apiUrl = 'https://dummyjson.com/products';
 
   constructor(private http: HttpClient) {}
 
   getProducts(): Observable<{ products: Product[] }> {
-    return this.http.get<{ products: Product[] }>(this.apiUrl);
+    return this.http.get<{ products: Product[] }>(`${this.apiUrl}?limit=100`);
   }
 
   getProductById(id: number): Observable<Product> {
@@ -21,5 +21,9 @@ export class ProductService {
 
   searchProducts(query: string): Observable<{ products: Product[] }> {
     return this.http.get<{ products: Product[] }>(`${this.apiUrl}/search?q=${query}`);
+  }
+
+  getFilteredCategories(term: string): Observable<{ products: Product[] }> {
+    return this.http.get<{ products: Product[] }>(`${this.apiUrl}/category/${term}?limit=100`);
   }
 }

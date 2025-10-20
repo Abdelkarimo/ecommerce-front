@@ -10,4 +10,11 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  reviews?: {
+    rating: number;
+    comment: string;
+    date: string;
+    reviewerName: string;
+    reviewerEmail: string;
+  }[];
 }

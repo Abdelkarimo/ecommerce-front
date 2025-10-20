@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { TitleCasePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -10,4 +11,9 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class ProductCard {
   @Input() product!: Product;
+  constructor(private router: Router) {}
+
+  showDetails(id: number) {
+    this.router.navigate(['/product', id]);
+  }
 }

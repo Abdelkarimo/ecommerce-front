@@ -13,18 +13,14 @@
 }
 
 .nav-link.active {
-  /* color: #0d6efd !important; */
   color: var(--color-accent);
   font-weight: 600;
 }
 
-.nav-item .btn {
-  background-color: var(--color-btn);
-}
-
-.nav-item .btn:hover {
-  background-color: var(--color-accent);
-  transition: color 0.2s;
+.nav-item .btn:hover,
+#cart-btn:hover {
+  background-color: var(--color-accent) !important;
+  transition: color 0.3s;
 }
 
 @media (max-width: 992px) {
