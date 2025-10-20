@@ -35,10 +35,10 @@
       <div class="containt_main">
         <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
           <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-          <a href="index.html">Home</a>
-          <a href="fashion.html">Fashion</a>
-          <a href="electronic.html">Electronic</a>
-          <a href="jewellery.html">Jewellery</a>
+          <a routerLink="">Home</a>
+          <a routerLink="/products">Products</a>
+          <a routerLink="/favourite-list">Favourites</a>
+          <a routerLink="/about">About</a>
         </div>
         <span class="toggle_icon" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
         <div class="dropdown">
