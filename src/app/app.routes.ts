@@ -1,13 +1,20 @@
 import { Routes } from '@angular/router';
-import { Cart } from './features/cart/cart/cart';
+import { CartComponent } from './features/cart/cart/cart';
 import { Landing } from './features/landing/landing/landing';
-import { Favourite } from './features/favourites/favourite';
-import { Checkout } from './features/cart/checkout/checkout';
+import { FavouriteComponent } from './features/favourites/favourite';
+import { CheckoutComponent } from './features/cart/checkout/checkout';
+import { OrderConfirmation } from './features/order-confirmation/order-confirmation';
+
 export const routes: Routes = [
-    {path:'',redirectTo:"landing",pathMatch:'full'},
-    {path:'landing',component:Landing,title:'Landing Page'},
-    {path:'cart', component: Cart, title:'cart'},
-    {path:'favorites',component:Favourite,title:'favorite'},
-    {path:'checkout',component:Checkout,title:'checkout'}
-  
+    { path: '', redirectTo: 'landing', pathMatch: 'full' },
+    { path: 'landing', component: Landing, title: 'Landing Page' },
+    { path: 'cart', component: CartComponent, title: 'Cart' },
+        { path: 'favorites', component: FavouriteComponent, title: 'Favorites' },
+        // compatibility: some templates use 'favourites' (british spelling)
+        { path: 'favourites', redirectTo: 'favorites' },
+    { path: 'checkout', component: CheckoutComponent, title: 'Checkout' },
+    { path: 'order-confirmation', component: OrderConfirmation, title: 'Order Confirmation' },
+    // fallback
+    { path: '**', redirectTo: 'landing' }
 ];
+
