@@ -37,6 +37,7 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent, canActivate: [authGuard]  },
       { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard]  },
       { path: 'favourites', component: FavouriteComponent, canActivate: [authGuard]  },
+      {path:"favorites",redirectTo:"favourites"},
       {
         path: 'admin',
         component: AdminDashboard,
@@ -44,15 +45,12 @@ export const routes: Routes = [
         canActivate: [authGuard],
         // ### only admin role can access
         data: { role: 'admin' },
-        // ### restrict to admin users
-        canActivate: [authGuard],
+        
         // ### only admin role can access
-        data: { role: 'admin' },
         children: [
           // ### admin child routes
           { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }},
           // ### admin child routes
-          { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }}
         ]
       }
     ]
