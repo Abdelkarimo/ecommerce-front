@@ -16,6 +16,7 @@ import { ProductDetail } from './features/products/product-detail/product-detail
 import { CartComponent } from './features/cart/cart/cart';
 import { CheckoutComponent } from './features/cart/checkout/checkout';
 import { FavouriteComponent } from './features/favourites/favourite';
+import {OrderConfirmation   }from './features/order-confirmation/order-confirmation';
 
 // Admin
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent, canActivate: [authGuard]  },
       { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard]  },
       { path: 'favourites', component: FavouriteComponent, canActivate: [authGuard]  },
+      { path: 'order-confirmation', component: OrderConfirmation, canActivate: [authGuard]  },
       {path:"favorites",redirectTo:"favourites"},
       {
         path: 'admin',

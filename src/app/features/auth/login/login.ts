@@ -14,7 +14,7 @@
   @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [FormsModule, RouterLink, RouterLinkActive],
+    imports: [FormsModule, RouterLink],
     templateUrl: './login.html',
     styleUrl: './login.css'
   })

@@ -9,7 +9,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-register',
   templateUrl: './register.html',
   styleUrl: './register.css',
-  imports: [FormsModule,RouterLink,RouterLinkActive]
+  imports: [FormsModule,RouterLink]
 })
 export class Register {
   formData = { name: '', email: '', password: '' };
