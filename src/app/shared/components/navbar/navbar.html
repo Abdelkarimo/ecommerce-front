@@ -1,57 +1,128 @@
-<nav class="navbar navbar-expand-lg navbar-dark  shadow-sm" style="background-color: var(--color-primary);">
+<!-- banner bg main start -->
+<div class="banner_bg_main">
+  <!-- header top section start -->
   <div class="container">
-    <!-- Logo / Brand -->
-    <a class="navbar-brand fw-bold" routerLink="/">E-Shop</a>
-
-    <!-- Toggler for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/favourite-list" routerLinkActive="active">Favourites</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
-        </li>
-      </ul>
-
-      <!-- Right side (Auth buttons or User info) -->
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-primary ms-2" routerLink="/register">Sign Up</a>
-        </li>
-        <li class="nav-item">
-        <li class="nav-item ms-3">
-          <a class="btn position-relative bg-primary text-light border-0 shadow-sm" routerLink="/cart" id="cart-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart3 me-1"
-              viewBox="0 0 16 16">
-              <path
-                d="M0 1.5A.5.5 0 0 1 .5 1h1.528a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1.5 7A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-            </svg>
-            Cart
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              0
-            </span>
-          </a>
-        </li>
-      </ul>
+    <div class="header_section_top">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="custom_menu">
+            <ul>
+              <li><a routerLink="">Home</a></li>
+              <li><a routerLink="/products">Products</a></li>
+              <li><a routerLink="/favourite-list">Favourites</a></li>
+              <li><a routerLink="/about">About</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-</nav>
+  <!-- header top section start -->
+  <!-- logo section start -->
+  <div class="logo_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="logo"><a href="index.html"><img src="/assets/logo.png"></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- logo section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container">
+      <div class="containt_main">
+        <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
+          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+          <a href="index.html">Home</a>
+          <a href="fashion.html">Fashion</a>
+          <a href="electronic.html">Electronic</a>
+          <a href="jewellery.html">Jewellery</a>
+        </div>
+        <span class="toggle_icon" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">All Category
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+        <div class="main">
+          <!-- Another variation with a button -->
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search this blog">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="header_box">
+          <div class="lang_box ">
+            <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+              <img src="assets/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i
+                class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu ">
+              <a href="#" class="dropdown-item">
+                <img src="assets/flag-france.png" class="mr-2" alt="flag">
+                French
+              </a>
+            </div>
+          </div>
+          <div class="login_menu">
+            <ul>
+              <li><a href="#">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  <span class="padding_10">Cart</span></a>
+              </li>
+              <li><a href="#">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="padding_10">Login</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header section end -->
+  <!-- banner section start -->
+  <div class="banner_section layout_padding">
+    <div class="container">
+      <div id="my_slider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active" *ngFor="let banner of banners; let i = index" [class.active]="i === 0">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <h1 class="banner_taital">{{ banner.title }}</h1>
+                <div class="buynow_bt">
+                  <a routerLink="/products">Buy Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#my_slider" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#my_slider" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- banner section end -->
+</div>

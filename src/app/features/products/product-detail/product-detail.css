@@ -1,24 +1,107 @@
-.container {
-  max-width: 1200px;
+.container.py-5 {
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
-
 h2 {
   color: #222;
 }
 
-img.img-thumbnail:hover {
+/* Main product image */
+.img-fluid {
+  border-radius: 1rem;
+  border: 1px solid rgba(242, 101, 34, 0.15); /* subtle orange border */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+  transform: scale(1.02);
+}
+
+/* Thumbnail images */
+.img-thumbnail {
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.img-thumbnail.border-primary {
+  border-color: #f26522; /* orange highlight for selected image */
+}
+
+.img-thumbnail:hover {
   transform: scale(1.05);
-  transition: transform 0.2s ease;
+  border-color: #f26522;
 }
 
-.btn {
-  border-radius: 10px;
+/* Title and brand */
+h2.fw-bold {
+  color: #f26522; /* orange accent for title */
+  margin-bottom: 0.5rem;
 }
 
-.card {
-  border-radius: 16px;
+.text-muted {
+  color: #555 !important;
 }
 
-.card-footer button {
-  border-radius: 8px;
+/* Price & discount */
+.fs-4.fw-semibold.text-primary {
+  color: #f26522;
+}
+
+.text-danger {
+  font-weight: 700;
+}
+
+/* Rating badge */
+.badge.bg-success {
+  background-color: #f26522 !important;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn.btn-primary {
+  background-color: #f26522;
+  border-color: #f26522;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn.btn-primary:hover {
+  background-color: #e65500;
+  border-color: #e65500;
+  transform: scale(1.05);
+}
+
+ul.list-unstyled li {
+  padding: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+h6.fw-semibold {
+  color: #f26522;
+}
+
+.card.mb-3.border-0.shadow-sm {
+  border-radius: 1rem;
+  border: 1px solid rgba(242, 101, 34, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.mb-3.border-0.shadow-sm:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(242, 101, 34, 0.2);
+}
+
+.card-body h6 {
+  color: #f26522;
+  font-weight: 700;
+}
+
+.card-body p {
+  color: #555;
 }

@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext);
+.footerdiv {
+     
+    font-family: 'Poppins', sans-serif;
+ 
+}
+div .link-light {
+    
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+
+}
+
+div .link-light:hover{
+    color :#bb4d1b !important;
+    font-weight: bold;
+    /* transform: translateY(100px) ease !important; */
+    box-shadow: 5px;
+
+}
+
+
+.bi{
+    transition: color 0.3s ease;
+
+}
+
+.bi:hover{
+    color :#bb4d1b;
+}

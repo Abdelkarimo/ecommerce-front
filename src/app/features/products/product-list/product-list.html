@@ -1,13 +1,20 @@
-<h1 style="text-align: center;" class="m-5">Products</h1>
-
-<div id="product-list" class="product-grid d-flex flex-wrap gap-4 justify-content-center container">
-
-  @for(product of products ;track product.id){
-  <app-product-card [product]=" product"></app-product-card>
-  }
-  @empty {
-  <div class="text-center text-muted py-5">
-    <h5>No products found</h5>
+<section class="py-5">
+  <div class="container text-center">
+    <h1 class="mb-5 fw-bold">Our Products</h1>
+    <app-filter-panel (productsChanged)="onProductsChanged($event)"></app-filter-panel>
+    @if (products.length > 0) {
+    <div id="product-list" class="row g-4 justify-content-center align-items-stretch">
+      @for (product of filteredProducts; track product.id) {
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+      }
+    </div>
+    } @else {
+    <div class="text-muted py-5">
+      <h5>No products found</h5>
+      <p>Try adjusting filters or check again later.</p>
+    </div>
+    }
   </div>
-  }
-</div>
+</section>
