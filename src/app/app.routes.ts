@@ -41,6 +41,7 @@ import { FavouriteComponent } from './features/favourites/favourite';
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
 import { ProductCrud } from './features/admin/product-crud/product-crud';
 import { authGuard } from './core/auth/auth-guard';
+import { authGuard } from './core/auth/auth-guard';
 
 export const routes: Routes = [
 
@@ -64,7 +65,13 @@ export const routes: Routes = [
         canActivate: [authGuard],
         // ### only admin role can access
         data: { role: 'admin' },
+        // ### restrict to admin users
+        canActivate: [authGuard],
+        // ### only admin role can access
+        data: { role: 'admin' },
         children: [
+          // ### admin child routes
+          { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }},
           // ### admin child routes
           { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }}
         ]
