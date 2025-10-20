@@ -1,9 +1,21 @@
 import { Routes } from '@angular/router';
-import { Cart } from './features/cart/cart/cart';
+
+// Layouts
+import { AuthLayout } from './Layout/auth-layout/auth-layout';
+import { MainLayout } from './Layout/main-layout/main-layout';
+
+// Auth
+import { Login } from './features/auth/login/login';
+import { Register } from './features/auth/register/register';
+
+// Pages
+import { About } from './features/about/about/about';
 import { Landing } from './features/landing/landing/landing';
-import { Favourite } from './features/favourites/favourite';
-import { Checkout } from './features/cart/checkout/checkout';
-import { FavouriteList } from './features/favourites/favourite-list/favourite-list';
+import { ProductList } from './features/products/product-list/product-list';
+import { ProductDetail } from './features/products/product-detail/product-detail';
+import { CartComponent } from './features/cart/cart/cart';
+import { CheckoutComponent } from './features/cart/checkout/checkout';
+import { FavouriteComponent } from './features/favourites/favourite';
 
 // Admin
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
@@ -22,9 +34,10 @@ export const routes: Routes = [
       { path: 'products', component: ProductList },
       { path: 'products/:id', component: ProductDetail },
       // ### protected routes
-      { path: 'cart', component: Cart, canActivate: [authGuard]  },
-      { path: 'checkout', component: Checkout, canActivate: [authGuard]  },
-      { path: 'favourites', component: FavouriteList, canActivate: [authGuard]  },
+      { path: 'cart', component: CartComponent, canActivate: [authGuard]  },
+      { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard]  },
+      { path: 'favourites', component: FavouriteComponent, canActivate: [authGuard]  },
+      {path:"favorites",redirectTo:"favourites"},
       {
         path: 'admin',
         component: AdminDashboard,
@@ -32,9 +45,12 @@ export const routes: Routes = [
         canActivate: [authGuard],
         // ### only admin role can access
         data: { role: 'admin' },
+        
+        // ### only admin role can access
         children: [
           // ### admin child routes
-          { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }}
+          { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }},
+          // ### admin child routes
         ]
       }
     ]
@@ -51,5 +67,5 @@ export const routes: Routes = [
   },
 
   // 🌐 Wildcard redirect
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: '', redirectTo: '', pathMatch: 'full' }
 ];
