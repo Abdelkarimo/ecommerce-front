@@ -11,9 +11,15 @@ import { Auth } from '../../../core/auth/auth';
 })
 export class Navbar {
   @Input() showLinks: boolean = true;
+
+  currentUser : any;
   constructor(public auth: Auth) {}
   logout() {
     this.auth.logout();
+  }
+
+  ngOnInit(): void {
+      this.currentUser = this.auth.getCurrentUser();
   }
 
 

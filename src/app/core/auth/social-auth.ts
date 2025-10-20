@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+import { User } from '../interface/User';
 
 declare const google: any;
 declare const FB: any;
@@ -7,7 +8,8 @@ declare const FB: any;
   providedIn: 'root'
 })
 export class SocialAuth {
-  user = signal<any | null>(null);
+  // ### user signal to hold current user data
+  user = signal<User | null>(null);
 
   constructor() {
     this.loadGoogleSDK();
@@ -35,9 +37,22 @@ export class SocialAuth {
         client_id: clientId,
         callback: (res: any) => {
           const token = res.credential;
-          const user = this.decodeJwt(token);
-          this.user.set(user);
-          localStorage.setItem('user', JSON.stringify(user));
+          const decoded = this.decodeJwt(token);
+
+          // ✅ Social user structure
+            const user: User = {
+              id: decoded.sub,
+              name: decoded.name,
+              email: decoded.email,
+              role: 'user',
+              source: 'google',
+              picture: decoded.picture,
+              cart: [],
+              favourites: [] 
+            };
+          
+          // ### set user signal & save to localStorage 
+          this.loginSocial(user);
           callback(user);
         }
       });
@@ -93,24 +108,70 @@ export class SocialAuth {
     FB.login((response: any) => {
       if (response.authResponse) {
         FB.api('/me', { fields: 'name,email,picture' }, (userInfo: any) => {
-          this.user.set(userInfo);
-          localStorage.setItem('user', JSON.stringify(userInfo));
+
+          // ### Social user structure
+          const user: User = {
+            id: userInfo.id,
+            name: userInfo.name,
+            email: userInfo.email,
+            role: 'user',
+            source: 'facebook',
+            picture: userInfo.picture?.data?.url,
+            cart: [],
+            favourites: [] 
+          };
+
+          // ### set user signal & save to localStorage
+          this.loginSocial(user);
           callback(userInfo);
         });
       }
     }, { scope: 'public_profile,email' });
   }
 
+  
+  /** ✅ Shared social login function */
+  private loginSocial(user: User) {
+    // ✅ Get all users
+    let users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
+
+    // ✅ Check if user exists
+    const existingIndex = users.findIndex(u => u.email === user.email);
+
+    if (existingIndex === -1) {
+      // First-time login → add new user
+      users.push(user);
+    } else {
+      // Already exists → update info
+      users[existingIndex] = { ...users[existingIndex], ...user };
+    }
+
+    // ✅ Save to localStorage (main fix)
+    localStorage.setItem('users', JSON.stringify(users));
+    localStorage.setItem('currentUser', JSON.stringify(user));
+
+    // ✅ Update signal
+    this.user.set(user);
+  }
+
   /** =============== LOGOUT =============== **/
   logout() {
-    localStorage.removeItem('user');
+    //localStorage.removeItem('user');
+    // ### clear current user
+    localStorage.removeItem('currentUser');
     this.user.set(null);
   }
 
   /** =============== CHECK =============== **/
   getCurrentUser() {
-    const saved = localStorage.getItem('user');
-    if (saved) this.user.set(JSON.parse(saved));
-    return this.user();
+    // ### load from localStorage
+  const saved = localStorage.getItem('currentUser');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      this.user.set(parsed);
+      return parsed;
+    }
+    return null;
   }
+  
 }
