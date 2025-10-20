@@ -1,93 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top py-3">
-  <div class="container d-flex justify-content-between align-items-center">
-
-    <!-- 🏪 Logo -->
-    <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" routerLink="/">
-      <i class="fa-solid fa-store me-2"></i> E-Shop
-    </a>
-
-    <!-- 📱 Toggler -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- 🌐 Navbar Content -->
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-
-      <!-- 🔗 Links (left) -->
-      <div class="flex-grow-1">
-        @if (showLinks) {
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/"
-                 routerLinkActive="active-link"
-                 [routerLinkActiveOptions]="{ exact: true }">
-                <i class="fa-solid fa-house me-2"></i> Home
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/about"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-circle-info me-2"></i> About
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/products"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-box-open me-2"></i> Products
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/favourites"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-heart me-2 text-danger"></i> Favourites
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/cart"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-cart-shopping me-2"></i> Cart
-              </a>
-            </li>
-          </ul>
-        }
-      </div>
-
-      <!-- 🔐 Auth Buttons (always at right) -->
-      <div class="d-flex align-items-center gap-2 ms-auto">
-        @if (!showLinks) {
-          <a routerLink="/login" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="fa-solid fa-right-to-bracket me-2"></i> Login
-          </a>
-
-          <a routerLink="/register" class="btn btn-primary d-flex align-items-center">
-            <i class="fa-solid fa-user-plus me-2"></i> Register
-          </a>
-        }
-
-        @if (showLinks) {
-          <button (click)="logout()" routerLink="/login" class="btn btn-danger d-flex align-items-center">
-            <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
-          </button>
-        }
-      </div>
-    </div>
-  </div>
-</nav>
+<div class="w-100 bg-info-subtle p-3">
+    <ul class="list-unstyled d-flex w-100 justify-content-around p-2">
+        <a routerLink="cart" class=" nav-link">
+            <li>cart</li>
+        </a>
+       <a routerLink="favorites" class="nav-link">
+            <li>favorites</li>
+        </a>
+    </ul>
+</div>

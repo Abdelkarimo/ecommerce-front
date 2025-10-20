@@ -1,0 +1,32 @@
+@if(this.allFavorites.length>0){
+<table class="table table-striped w-75 mx-a">
+    <caption> list of products in favorites</caption>
+    <thead><tr>
+        <th>product name</th>
+        <th>product price</th>
+        <th>user id </th>
+    </tr></thead>
+    <tbody>
+        @for (item of allFavorites;track item.data.id){
+    <tr>
+       <td> <p>{{item.data.title}}</p> </td>
+       <td> <p>{{item.data.price}}</p></td>
+        <td><p>{{item.userId}}</p></td>
+        <td>
+            <div class="d-flex justify-content-around w-100">
+                <button class="btn btn-outline-danger" (click)="RemoveFromWishlist(item.data.id)">Remove from Favorites</button>
+                <button class="btn btn-outline-success" (click)="AddToCart(item.data.id)">Add to Cart</button>
+             </div>
+            </td>
+    </tr>
+}
+
+    </tbody>
+
+</table>
+
+
+}
+@else {
+    <p class="fw-bold fs-6 mx-5 my-2">nothing to show</p>
+}
