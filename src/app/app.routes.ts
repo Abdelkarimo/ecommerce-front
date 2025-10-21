@@ -1,6 +1,4 @@
-import { CategoryList } from './features/category-list/category-list';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ExtraOptions } from '@angular/router';
+import { Routes } from '@angular/router';
 
 // Layouts
 import { AuthLayout } from './Layout/auth-layout/auth-layout';
@@ -69,5 +67,5 @@ export const routes: Routes = [
   },
 
   // 🌐 Wildcard redirect
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];

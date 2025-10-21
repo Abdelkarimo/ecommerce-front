@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../../core/services/product.service';
+import { Data } from '../../../core/services/data';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +14,7 @@ export class ProductDetail {
   product!: Product;
   selectedImage: string | null = null;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+  constructor(private route: ActivatedRoute, private productService: Data) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {

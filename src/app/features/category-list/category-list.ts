@@ -3,6 +3,7 @@ import { Product } from '../../core/models/product.model';
 import { ProductService } from '../../core/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductCard } from '../../shared/components/product-card/product-card';
+import { Data } from '../../core/services/data';
 
 @Component({
   selector: 'app-category-list',
@@ -14,7 +15,7 @@ export class CategoryList {
   products: Product[] = [];
   categoryName: string = '';
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) {}
+  constructor(private productService: Data, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {

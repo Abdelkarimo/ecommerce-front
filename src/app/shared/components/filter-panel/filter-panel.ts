@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../core/models/product.model';
-import { ProductService } from '../../../core/services/product.service';
+import { Data } from '../../../core/services/data';
 
 @Component({
   selector: 'app-filter-panel',
@@ -19,7 +19,7 @@ export class FilterPanel implements OnInit {
   selectedCategories: string[] = [];
   sortOption: string = '';
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: Data) {}
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
       this.products = data.products;
@@ -47,7 +47,6 @@ export class FilterPanel implements OnInit {
     this.filteredProducts = this.products.filter(
       (p) => this.selectedCategories.length === 0 || this.selectedCategories.includes(p.category)
     );
-    console.log(this.filteredProducts);
     this.applySorting();
     this.emitFilteredProducts(); //emit whenever filters change
   }
