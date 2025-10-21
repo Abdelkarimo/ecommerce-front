@@ -86,10 +86,10 @@ export class ProductDetail {
 
     this.newReview.date = new Date().toISOString();
 
-    const storedUser = localStorage.getItem('currentUser') || localStorage.getItem('user');
+    const storedUser = localStorage.getItem('currentUser');
     if (storedUser) this.user = JSON.parse(storedUser);
 
-    this.newReview.reviewerName = this.user.displayName;
+    this.newReview.reviewerName = this.user.name;
     this.newReview.reviewerEmail = this.user.email;
 
     const storedKey = `reviews-${this.product.id}`;
