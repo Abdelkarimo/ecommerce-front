@@ -2,15 +2,18 @@ import { Injectable, signal } from '@angular/core';
 import { User } from '../interface/User';
 import { Auth } from '../auth/auth';
 import { SocialAuth } from '../auth/social-auth';
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../models/product.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Data {
-
   user = signal<User | null>(null);
+  private apiUrl = 'https://dummyjson.com/products';
 
-  constructor(private auth: Auth, private social: SocialAuth) {
+  constructor(private auth: Auth, private social: SocialAuth, private http: HttpClient) {
     // ### Load the current user from Auth or SocialAuth
     const currentUser = auth.getCurrentUser() || social.getCurrentUser();
     if (currentUser) this.user.set(currentUser);
@@ -40,7 +43,7 @@ export class Data {
 
     // ### Update in users array
     const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
-    const index = users.findIndex(u => u.id === updatedUser.id);
+    const index = users.findIndex((u) => u.id === updatedUser.id);
     if (index !== -1) {
       users[index] = updatedUser;
     } else {
@@ -53,7 +56,20 @@ export class Data {
     this.auth.user.set(updatedUser);
     this.social.user.set(updatedUser);
   }
+
+  getProducts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}?limit=100`);
+  }
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  }
+
+  searchProducts(query: string): Observable<{ products: Product[] }> {
+    return this.http.get<{ products: Product[] }>(`${this.apiUrl}/search?q=${query}`);
+  }
+
+  getFilteredCategories(term: string): Observable<{ products: Product[] }> {
+    return this.http.get<{ products: Product[] }>(`${this.apiUrl}/category/${term}?limit=100`);
+  }
 }
-
-
-

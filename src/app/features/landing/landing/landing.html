@@ -1,1 +1,35 @@
-<p>landing works!</p>
+<!-- Hero Section -->
+<section class="background-img" id="home">
+
+
+  <!-- Categories Section -->
+  <section class="container text-center py-5">
+    <h2 class="fw-bold mb-5 ">Categories</h2>
+    <div class="row g-4">
+      @for (category of categories; track category.name) {
+      <div class="col-md-3 col-sm-6">
+        <div class="card border-0 shadow-sm category-card h-100 ">
+          <img [src]="category.image" class="card-img-top" [alt]="category.name" />
+          <div class="card-body">
+            <h5 class="card-title">{{ category.name.replace('-'," ") | titlecase}}</h5>
+            <p class="card-text">{{ category.description }}</p>
+            <a [routerLink]="['/category-list']" fragment="category-list" [queryParams]="{ category: category.name }"
+              class="btn btn-primary btn-sm">
+              View Products
+            </a>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section text-light text-center py-5 mb-5">
+    <div class="container">
+      <h2 class="fw-bold text-light">Ready to Start Shopping?</h2>
+      <p>Join our community and enjoy exclusive deals and offers.</p>
+      <a routerLink="/register" class="btn btn-light btn-lg mt-2">Get Started</a>
+    </div>
+  </section>
+</section>

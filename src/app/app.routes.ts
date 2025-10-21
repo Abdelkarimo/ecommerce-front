@@ -21,22 +21,23 @@ import { FavouriteList } from './features/favourites/favourite-list/favourite-li
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
 import { ProductCrud } from './features/admin/product-crud/product-crud';
 import { authGuard } from './core/auth/auth-guard';
+import { CategoryList } from './features/category-list/category-list';
 
 export const routes: Routes = [
-
   // 🏠 Public pages (Main Layout)
   {
     path: '',
     component: MainLayout,
     children: [
       { path: '', component: Landing },
+      { path: 'category-list', component: CategoryList },
       { path: 'about', component: About },
       { path: 'products', component: ProductList },
       { path: 'products/:id', component: ProductDetail },
       // ### protected routes
-      { path: 'cart', component: Cart, canActivate: [authGuard]  },
-      { path: 'checkout', component: Checkout, canActivate: [authGuard]  },
-      { path: 'favourites', component: FavouriteList, canActivate: [authGuard]  },
+      { path: 'cart', component: Cart, canActivate: [authGuard] },
+      { path: 'checkout', component: Checkout, canActivate: [authGuard] },
+      { path: 'favourites', component: FavouriteList, canActivate: [authGuard] },
       {
         path: 'admin',
         component: AdminDashboard,
@@ -46,10 +47,15 @@ export const routes: Routes = [
         data: { role: 'admin' },
         children: [
           // ### admin child routes
-          { path: 'crud', component: ProductCrud, canActivate: [authGuard], data: { role: 'admin' }}
-        ]
-      }
-    ]
+          {
+            path: 'crud',
+            component: ProductCrud,
+            canActivate: [authGuard],
+            data: { role: 'admin' },
+          },
+        ],
+      },
+    ],
   },
 
   // 🔐 Auth pages (Auth Layout)
@@ -58,10 +64,10 @@ export const routes: Routes = [
     component: AuthLayout,
     children: [
       { path: 'login', component: Login },
-      { path: 'register', component: Register }
-    ]
+      { path: 'register', component: Register },
+    ],
   },
 
   // 🌐 Wildcard redirect
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: '', redirectTo: '', pathMatch: 'full' },
 ];

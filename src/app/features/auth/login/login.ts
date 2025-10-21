@@ -16,17 +16,17 @@
     OAuthCredential
   } from '@angular/fire/auth';
 
-  @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [FormsModule, RouterLink, RouterLinkActive],
-    templateUrl: './login.html',
-    styleUrl: './login.css'
-  })
-  export class Login {
-    formData = { email: '', password: '' };
-    errorMessage = '';
-    temp = false;
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, RouterLink, RouterLinkActive],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
+})
+export class Login implements AfterViewInit {
+  formData = { email: '', password: '' };
+  errorMessage = '';
+  temp = false;
 
     constructor(
       private router: Router,
