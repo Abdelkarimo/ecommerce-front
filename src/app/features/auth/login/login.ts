@@ -4,7 +4,7 @@
   import { Auth } from '../../../core/auth/auth';
   import { Data } from '../../../core/services/data';
   import { User } from '../../../core/interface/User';
-
+  import { AfterViewInit } from '@angular/core';
   // 🔹 Firebase imports
   import {
     getAuth,
@@ -33,6 +33,17 @@ export class Login implements AfterViewInit {
       public auth: Auth,
       private data: Data
     ) {}
+    
+  ngAfterViewInit() {
+    // scroll to the login section once the page loads
+    setTimeout(() => {
+      const element = document.getElementById('login');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }
+
 
     /** 🔐 Normal login */
     onSubmit() {
