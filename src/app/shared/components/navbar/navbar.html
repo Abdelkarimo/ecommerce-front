@@ -2,7 +2,7 @@
 <div class="banner_bg_main">
   <!-- header top section start -->
   <div class="container">
-    <div class="header_section_top">
+    <div class="header_section_top d-none d-md-block">
       <div class="row">
         <div class="col-sm-12">
           <div class="custom_menu">
@@ -23,7 +23,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <div class="logo"><a href="index.html"><img src="/assets/logo.png"></a></div>
+          <div class="logo"><a href="index.html"><img src="/assets/logo.png" class="img-fluid"></a></div>
         </div>
       </div>
     </div>
@@ -32,38 +32,28 @@
   <!-- header section start -->
   <div class="header_section">
     <div class="container">
-      <div class="containt_main">
-        <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
-          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-          <a [routerLink]='["/"]' fragment="home">Home</a>
-          <a [routerLink]='["/products"]' fragment="product-list-id">Products</a>
-          <a [routerLink]='["/favourites"]' fragment="login">Favourites</a>
-          <a [routerLink]='["/about"]' fragment="about">About</a>
-        </div>
-        <span class="toggle_icon" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">All Category
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+      <div class="containt_main d-flex flex-column flex-md-row ">
+        <div class="toggle-search-bar d-flex flex-grow-1">
+          <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+            <a [routerLink]='["/"]' fragment="home">Home</a>
+            <a [routerLink]='["/products"]' fragment="product-list-id">Products</a>
+            <a [routerLink]='["/favourites"]' fragment="login">Favourites</a>
+            <a [routerLink]='["/about"]' fragment="about">About</a>
           </div>
-        </div>
-        <div class="main">
-          <!-- Another variation with a button -->
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search this blog">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+          <span class="toggle_icon d-block d-md-none" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
+          <div class="main w-100">
+            <div class="d-flex flex-sm-row w-100 gap-2">
+              <input type="text" class="form-control flex-grow-1" placeholder="Search this blog">
+              <button class="btn btn-secondary flex-shrink-0" type="button"
+                style="background-color:#f26522; border-color:#f26522">
                 <i class="fa fa-search"></i>
               </button>
             </div>
           </div>
         </div>
-        <div class="header_box">
-          <div class="lang_box ">
+        <div class="header_box d-flex flex-wrap  align-items-md-center mt-4 mt-md-0">
+          <div class="lang_box me-2 mb-2 mb-md-0">
             <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
               <img src="assets/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i
                 class="fa fa-angle-down ml-2" aria-hidden="true"></i>
@@ -75,7 +65,7 @@
               </a>
             </div>
           </div>
-          <div class="login_menu">
+          <div class="login_menu mb-2 mb-md-0 mx-auto">
             <ul>
               <li><a [routerLink]="['/cart']" fragment="cart">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -101,8 +91,8 @@
           <div class="carousel-item active" *ngFor="let banner of banners; let i = index" [class.active]="i === 0">
             <div class="row">
               <div class="col-sm-12 text-center">
-                <h1 class="banner_taital">{{ banner.title }}</h1>
-                <div class="buynow_bt">
+                <h1 class="banner_taital fs-1 fs-sm-3">{{ banner.title }}</h1>
+                <div class="buynow_bt fs-1 fs-sm-3">
                   <a routerLink="/products">Buy Now</a>
                 </div>
               </div>

@@ -1,9 +1,19 @@
 .banner_bg_main {
   width: 100%;
   background-image: url('/assets/54783.jpg');
+  object-fit: cover;
   height: auto;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+@media (max-width: 767px) {
+  .banner_bg_main {
+    height: 450px; /* smaller height for mobile */
+  }
+
+  .banner_taital {
+    color: #000; /* smaller on mobile */
+  }
 }
 .header_section_top {
   width: 100%;
@@ -72,7 +82,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 1050;
   top: 0;
   left: 0;
   background-color: #111;
