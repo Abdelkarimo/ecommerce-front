@@ -13,42 +13,42 @@ export class Landing {
   categories = [
     {
       name: 'Fragrances',
-      description: 'Latest gadgets and smart devices.',
+      description: 'Perfumes and scents for men and women.',
       image: '/assets/categories/fragrance.jpg',
     },
     {
       name: 'Furniture',
-      description: 'Trendy clothing and accessories for all.',
+      description: 'Stylish and functional furniture for home and office.',
       image: '/assets/categories/furniture.jpg',
     },
     {
       name: 'Groceries',
-      description: 'Everything you need for your home.',
+      description: 'Fresh groceries, staples, and household essentials.',
       image: '/assets/categories/grocery.jpg',
     },
     {
       name: 'Beauty',
-      description: 'Skincare, makeup, and wellness essentials.',
+      description: 'Skincare, makeup, and wellness products.',
       image: '/assets/categories/beauty.jpg',
     },
     {
       name: 'sports-accessories',
-      description: 'Gear up for fitness and adventure.',
+      description: 'Equipment and gear for sports and fitness.',
       image: '/assets/categories/sport.jpg',
     },
     {
       name: 'kitchen-accessories',
-      description: 'Explore our wide collection of books.',
+      description: 'Cookware, utensils, and kitchen essentials.',
       image: '/assets/categories/kitchen.jpg',
     },
     {
       name: 'Laptops',
-      description: 'Fun and creative toys for kids.',
+      description: 'Latest laptops and computer accessories.',
       image: '/assets/categories/laptop.jpg',
     },
     {
       name: 'womens-dresses',
-      description: 'Accessories and tools for your vehicle.',
+      description: 'Fashionable dresses and outfits for women.',
       image: '/assets/categories/women-dresses.jpg',
     },
   ];
