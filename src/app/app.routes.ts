@@ -21,6 +21,7 @@ import { FavouriteList } from './features/favourites/favourite-list/favourite-li
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
 import { ProductCrud } from './features/admin/product-crud/product-crud';
 import { authGuard } from './core/auth/auth-guard';
+import { CategoryList } from './features/category-list/category-list';
 
 export const routes: Routes = [
   // 🏠 Public pages (Main Layout)
@@ -29,6 +30,7 @@ export const routes: Routes = [
     component: MainLayout,
     children: [
       { path: '', component: Landing },
+      { path: 'category-list', component: CategoryList },
       { path: 'about', component: About },
       { path: 'products', component: ProductList },
       { path: 'products/:id', component: ProductDetail },

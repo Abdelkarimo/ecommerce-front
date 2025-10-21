@@ -1,5 +1,5 @@
 <!-- Hero Section -->
-<div class="background-img">
+<section class="background-img" id="home">
 
 
   <!-- Categories Section -->
@@ -11,9 +11,9 @@
         <div class="card border-0 shadow-sm category-card h-100 ">
           <img [src]="category.image" class="card-img-top" [alt]="category.name" />
           <div class="card-body">
-            <h5 class="card-title">{{ category.name }}</h5>
+            <h5 class="card-title">{{ category.name.replace('-'," ") | titlecase}}</h5>
             <p class="card-text">{{ category.description }}</p>
-            <a [routerLink]="['/category-list']" [queryParams]="{ category: category.name }"
+            <a [routerLink]="['/category-list']" fragment="category-list" [queryParams]="{ category: category.name }"
               class="btn btn-primary btn-sm">
               View Products
             </a>
@@ -32,4 +32,4 @@
       <a routerLink="/register" class="btn btn-light btn-lg mt-2">Get Started</a>
     </div>
   </section>
-</div>
+</section>
