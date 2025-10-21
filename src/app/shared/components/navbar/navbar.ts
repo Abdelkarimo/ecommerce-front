@@ -25,7 +25,6 @@ export class Navbar {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
-      console.log(this.user);
     }
   }
 
