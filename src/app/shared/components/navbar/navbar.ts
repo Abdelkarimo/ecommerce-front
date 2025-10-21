@@ -7,7 +7,7 @@ import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
-  styleUrls: ['./navbar.css']
+  styleUrls: ['./navbar.css'],
 })
 export class Navbar implements OnInit {
   @Input() showLinks: boolean = true;
