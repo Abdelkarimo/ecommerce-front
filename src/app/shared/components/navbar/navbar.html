@@ -73,23 +73,22 @@
                   <span class="padding_10">Cart</span></a>
 
               </li>
-              <li>
-                @if(!user)
-                {
-                <a [routerLink]='["/login"]' fragment="login">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">Login</span></a>
-                }
-                @else{
-                <div class="user-info d-flex align-items-center gap-2">
-                  <div class="d-flex flex-column">
-                    <span>{{ user.displayName }}</span>
-                    <button (click)="logOut()" class="btn btn-sm bg-dark mt-1 text-light">Logout</button>
-                  </div>
-                </div>
-                }
-
-              </li>
+<li>
+    @if(!user) {
+      <a [routerLink]='["/login"]' fragment="login">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <span class="padding_10">Login</span>
+      </a>
+    } @else {
+      <div class="user-info d-flex align-items-center gap-2">
+        
+        <div class="d-flex flex-column">
+          <span class="fw-bold">{{ user.name }}</span>
+          <button (click)="logOut()" class="btn btn-sm bg-dark mt-1 text-light">Logout</button>
+        </div>
+      </div>
+    }
+  </li>
             </ul>
           </div>
         </div>

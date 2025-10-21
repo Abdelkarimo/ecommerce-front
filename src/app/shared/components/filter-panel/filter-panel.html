@@ -1,42 +1,47 @@
-<div class="filter-panel p-4 rounded-3 shadow-sm">
-  <!-- Action Buttons -->
-  <div class="filter-actions mb-4">
-    <button class="btn rstbtn" (click)="resetFilters()">
-      <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
-    </button>
-    <button class="btn btn-custom" (click)="applyFilters()">
-      <i class="bi bi-check2 me-1"></i> Apply
-    </button>
-  </div>
-
-  <!-- Sort Section -->
-  <div class="filter-section mb-4">
-    <h6>Sort By</h6>
-    <select class="form-select" [(ngModel)]="sortOption" (change)="applyFilters()">
-      <option value="">Default</option>
-      <option value="priceLowHigh">Price: Low to High</option>
-      <option value="priceHighLow">Price: High to Low</option>
-      <option value="rating">Rating</option>
-    </select>
-  </div>
-
-  <!-- Categories Section -->
-  <div class="filter-section">
-    <h6>Categories</h6>
-    @if(categories.length > 0) {
-    @for(category of categories; track category) {
-    <div class="form-check mb-2">
-      <input type="checkbox" class="form-check-input" [checked]="selectedCategories.includes(category)"
-        (change)="toggleCategory(category)" />
-      <label class="form-check-label">
-        {{ category.split('-').join(' ').toUpperCase() }}
-      </label>
+<aside id="category-sidebar" class="filter-sidebar">
+  <div class="filter-panel p-4 rounded-3 shadow-sm">
+    <!-- Action Buttons -->
+    <div class="filter-actions mb-4">
+      <button class="btn rstbtn" (click)="resetFilters()">
+        <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+      </button>
+      <button class="btn btn-custom" (click)="applyFilters()">
+        <i class="bi bi-check2 me-1"></i> Apply
+      </button>
     </div>
-    }
-    } @else {
-    <div class="text-muted small">
-      No categories available.
+
+    <!-- Sort Section -->
+    <div class="filter-section mb-4">
+      <h6>Sort By</h6>
+      <select class="form-select" [(ngModel)]="sortOption" (change)="applyFilters()">
+        <option value="">Default</option>
+        <option value="priceLowHigh">Price: Low to High</option>
+        <option value="priceHighLow">Price: High to Low</option>
+        <option value="rating">Rating</option>
+      </select>
     </div>
-    }
+
+    <!-- Categories Section -->
+    <div class="filter-section">
+      <h6>Categories</h6>
+      @if (categories.length > 0) {
+        @for (category of categories; track category) {
+          <div class="form-check mb-2">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [checked]="selectedCategories.includes(category)"
+              (change)="toggleCategory(category)"
+              id="{{ category }}"
+            />
+            <label class="form-check-label" for="{{ category }}">
+              {{ category.split('-').join(' ').toUpperCase() }}
+            </label>
+          </div>
+        }
+      } @else {
+        <div class="text-muted small">No categories available.</div>
+      }
+    </div>
   </div>
-</div>
+</aside>

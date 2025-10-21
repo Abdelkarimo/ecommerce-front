@@ -1,0 +1,75 @@
+    /* 🔹 Same style as Login */
+    #register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #2b2b2b;
+    }
+
+    /* 🔹 Card */
+    #register .card {
+    background-color: #ffffff;
+    color: #333;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    /* 🔹 Heading */
+    #register h3 {
+    color: #f26522;
+    }
+
+    /* 🔹 Labels */
+    #register .form-label {
+    color: #555;
+    }
+
+    /* 🔹 Inputs */
+    #register .form-control {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    color: #333;
+    }
+    #register .form-control:focus {
+    border-color: #f26522;
+    box-shadow: 0 0 0 0.2rem rgba(242, 101, 34, 0.25);
+    }
+
+    /* 🔹 Primary Button */
+    #register .btn-primary {
+    background-color: #f26522;
+    border: none;
+    color: #fff;
+    transition: background-color 0.2s ease-in-out;
+    }
+    #register .btn-primary:hover {
+    background-color: #d7551d;
+    }
+
+    /* 🔹 Outline Buttons */
+    #register .btn-outline-danger,
+    #register .btn-outline-primary {
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    }
+    #register .btn-outline-danger:hover,
+    #register .btn-outline-primary:hover {
+    background-color: #f26522;
+    color: #fff;
+    border-color: #f26522;
+    }
+
+    /* 🔹 Divider */
+    #register .text-muted {
+    color: #888 !important;
+    }
+
+    /* 🔹 Link */
+    #register a {
+    color: #f26522;
+    }
+    #register a:hover {
+    text-decoration: underline;
+    }
