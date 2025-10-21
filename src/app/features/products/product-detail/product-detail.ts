@@ -4,12 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Data } from '../../../core/services/data';
 import { Auth } from '../../../core/auth/auth';
 import { FormsModule } from '@angular/forms';
-
-@Component({
-  selector: 'app-product-detail',
-  imports: [FormsModule],
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-product-detail',
@@ -35,7 +32,7 @@ export class ProductDetail implements OnInit {
   hasReviewed = false;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private productService: Data,
     private auth: Auth
   ) {}
@@ -89,9 +86,9 @@ export class ProductDetail implements OnInit {
 
   addToCart() {
     if (this.productService.addToCart(this.productId, this.quantity)) {
-      alert('Product added to cart successfully!');
+      throw('Product added to cart successfully!');
     } else {
-      alert('Please login to add products to cart');
+      throw('Please login to add products to cart');
     }
   }
 
@@ -99,9 +96,9 @@ export class ProductDetail implements OnInit {
     if (this.productService.toggleFavourite(this.productId)) {
       this.isInFavourites = !this.isInFavourites;
       const message = this.isInFavourites ? 'Added to favourites!' : 'Removed from favourites!';
-      alert(message);
+      throw(message);
     } else {
-      alert('Please login to manage favourites');
+      throw('Please login to manage favourites');
     }
   }
 
@@ -115,13 +112,14 @@ export class ProductDetail implements OnInit {
     if (this.quantity > 1) {
       this.quantity--;
     }
+  }
   submitReview() {
     if (this.hasReviewed) {
-      alert('You have already submitted a review for this product.');
+      throw('You have already submitted a review for this product.');
       return;
     }
     if (this.newReview.rating === 0 || !this.newReview.comment.trim()) {
-      alert('Please add a rating and a comment before submitting.');
+      throw('Please add a rating and a comment before submitting.');
       return;
     }
 
