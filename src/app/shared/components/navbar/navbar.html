@@ -9,8 +9,8 @@
             <ul>
               <li><a [routerLink]='["/"]' fragment="home">Home</a></li>
               <li><a [routerLink]='["/products"]' fragment="product-list-id">Products</a></li>
-              <li><a routerLink="/favourites">Favourites</a></li>
-              <li><a routerLink="/about">About</a></li>
+              <li><a [routerLink]='["/favourites"]' fragment="login">Favourites</a></li>
+              <li><a [routerLink]='["/about"]' fragment="about">About</a></li>
             </ul>
           </div>
         </div>
@@ -35,10 +35,10 @@
       <div class="containt_main">
         <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
           <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-          <a routerLink="">Home</a>
-          <a routerLink="/products">Products</a>
-          <a routerLink="/favourite-list">Favourites</a>
-          <a routerLink="/about">About</a>
+          <a [routerLink]='["/"]' fragment="home">Home</a>
+          <a [routerLink]='["/products"]' fragment="product-list-id">Products</a>
+          <a [routerLink]='["/favourites"]' fragment="login">Favourites</a>
+          <a [routerLink]='["/about"]' fragment="about">About</a>
         </div>
         <span class="toggle_icon" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
         <div class="dropdown">
@@ -77,7 +77,7 @@
           </div>
           <div class="login_menu">
             <ul>
-              <li><a href="#">
+              <li><a [routerLink]="['/cart']" fragment="cart">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span class="padding_10">Cart</span></a>
               </li>
