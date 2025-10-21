@@ -1,13 +1,15 @@
 <div class="container mt-5 pt-5" style="max-width: 400px;">
   <div class="card shadow p-4">
-    <h3 class="text-center text-primary mb-4"><i class="fa-solid fa-user-plus me-2"></i>Register</h3>
+    <h3 class="text-center text-primary mb-4">
+      <i class="fa-solid fa-user-plus me-2"></i>Register
+    </h3>
 
-@if (message) {
-    <div class="alert alert-success">{{ message }}</div>
-}
-@if (errorMessage) {
-    <div  class="alert alert-danger">{{ errorMessage }}</div>
-}
+    @if (message) {
+      <div class="alert alert-success text-center">{{ message }}</div>
+    }
+    @if (errorMessage) {
+      <div class="alert alert-danger text-center">{{ errorMessage }}</div>
+    }
 
     <form (ngSubmit)="onSubmit()">
       <div class="mb-3">
@@ -25,11 +27,35 @@
         <input [(ngModel)]="formData.password" name="password" type="password" class="form-control" required />
       </div>
 
-      <button class="btn btn-primary w-100" type="submit">Register</button>
-      <p class="text-center mt-3">
-        Already have an account?
-        <a routerLink="/login" class="text-decoration-none">Login</a>
-      </p>
+      <button class="btn btn-primary w-100" type="submit" [disabled]="isLoading">
+        <i class="fa-solid fa-user-plus me-1"></i>
+        Register
+      </button>
     </form>
+
+    <hr class="my-3" />
+
+    <div class="text-center">
+      <button
+        class="btn btn-outline-danger w-100 mb-2"
+        (click)="registerWithGoogle()"
+        [disabled]="isLoading"
+      >
+        <i class="fa-brands fa-google me-2"></i> Register with Google
+      </button>
+
+      <button
+        class="btn btn-outline-primary w-100"
+        (click)="registerWithFacebook()"
+        [disabled]="isLoading"
+      >
+        <i class="fa-brands fa-facebook me-2"></i> Register with Facebook
+      </button>
+    </div>
+
+    <p class="text-center mt-3">
+      Already have an account?
+      <a routerLink="/login" class="text-decoration-none">Login</a>
+    </p>
   </div>
 </div>
