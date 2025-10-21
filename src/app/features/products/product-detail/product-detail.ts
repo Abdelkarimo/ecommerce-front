@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../core/models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { Data } from '../../../core/services/data';
+import { Auth } from '../../../core/auth/auth';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-product-detail',
+  imports: [FormsModule],
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -11,10 +17,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css',
 })
-export class ProductDetail {
+export class ProductDetail implements OnInit {
   productId!: number;
   product!: Product;
   selectedImage: string | null = null;
+  quantity: number = 1;
+  isInFavourites: boolean = false;
   newReview = {
     rating: 0,
     comment: '',
@@ -26,7 +34,11 @@ export class ProductDetail {
   user: any = null;
   hasReviewed = false;
 
-  constructor(private route: ActivatedRoute, private productService: Data) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private productService: Data,
+    private auth: Auth
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -39,6 +51,7 @@ export class ProductDetail {
     this.productService.getProductById(this.productId).subscribe({
       next: (res) => {
         this.product = res;
+        this.isInFavourites = this.productService.isInFavourites(this.productId);
 
         const storedReviews = localStorage.getItem(`reviews-${this.product.id}`);
         let localReviews: any[] = [];
@@ -74,6 +87,34 @@ export class ProductDetail {
     });
   }
 
+  addToCart() {
+    if (this.productService.addToCart(this.productId, this.quantity)) {
+      alert('Product added to cart successfully!');
+    } else {
+      alert('Please login to add products to cart');
+    }
+  }
+
+  toggleFavourite() {
+    if (this.productService.toggleFavourite(this.productId)) {
+      this.isInFavourites = !this.isInFavourites;
+      const message = this.isInFavourites ? 'Added to favourites!' : 'Removed from favourites!';
+      alert(message);
+    } else {
+      alert('Please login to manage favourites');
+    }
+  }
+
+  incrementQuantity() {
+    if (this.quantity < this.product.stock) {
+      this.quantity++;
+    }
+  }
+
+  decrementQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   submitReview() {
     if (this.hasReviewed) {
       alert('You have already submitted a review for this product.');

@@ -84,18 +84,4 @@ export class Auth {
     return JSON.parse(localStorage.getItem('currentUser') || 'null');
   }
 
-  // ### 🆕 Update current user data
-  updateCurrentUser(updatedUser: User) {
-    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-
-    // also update the full users list
-    const users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
-    const index = users.findIndex(u => u.id === updatedUser.id);
-    if (index !== -1) {
-      users[index] = updatedUser;
-      localStorage.setItem('users', JSON.stringify(users));
-    }
-
-    this.user.set(updatedUser); // 🆕 sync signal
-  }
 }

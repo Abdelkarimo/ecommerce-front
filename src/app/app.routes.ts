@@ -22,6 +22,7 @@ import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard
 import { ProductCrud } from './features/admin/product-crud/product-crud';
 import { authGuard } from './core/auth/auth-guard';
 import { CategoryList } from './features/category-list/category-list';
+import { OrderConfirmation } from './features/order-confirmation/order-confirmation';
 
 export const routes: Routes = [
   // 🏠 Public pages (Main Layout)
@@ -37,6 +38,7 @@ export const routes: Routes = [
       // ### protected routes
       { path: 'cart', component: Cart, canActivate: [authGuard] },
       { path: 'checkout', component: Checkout, canActivate: [authGuard] },
+      { path: 'order-confirmation', component: OrderConfirmation, canActivate: [authGuard] },
       { path: 'favourites', component: FavouriteList, canActivate: [authGuard] },
       {
         path: 'admin',
