@@ -1,20 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLinkActive, RouterModule } from '@angular/router';
-import { Admin } from '../../../features/admin/admin';
-import { importProvidersFrom } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  styleUrls: ['./navbar.css']
 })
-export class Navbar {
+export class Navbar implements OnInit {
   @Input() showLinks: boolean = true;
-  currentUser: any = 0;
-  isNavOpen = false;
   user: any = null;
+  isNavOpen = false;
   banners = [
     { title: 'Get Started on Your favorite shopping' },
     { title: 'New Deals Available Now!' },
@@ -22,17 +20,26 @@ export class Navbar {
   ];
 
   ngOnInit() {
-    const storedUser = localStorage.getItem('user');
+    this.loadUser();
+
+    // Optional: Automatically update the UI when user changes (for SPAs)
+    window.addEventListener('storage', () => this.loadUser());
+  }
+
+  private loadUser() {
+    const storedUser = localStorage.getItem('currentUser');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
-      console.log(this.user);
+    } else {
+      this.user = null;
     }
   }
 
   logOut() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('currentUser');
     this.user = null;
   }
+
   openNav() {
     this.isNavOpen = true;
   }
