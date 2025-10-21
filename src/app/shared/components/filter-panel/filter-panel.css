@@ -25,7 +25,7 @@
 /* Action Buttons */
 .filter-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -47,6 +47,7 @@
   background-color: #f26522 !important;
   color: #fff !important;
   border: none !important;
+  margin: 0;
 }
 
 .btn-custom:hover {

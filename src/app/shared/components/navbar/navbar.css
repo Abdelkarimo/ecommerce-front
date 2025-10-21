@@ -337,3 +337,10 @@ a:hover {
   color: #f1f1f1;
   background-color: #575757;
 }
+
+.user-info img {
+  object-fit: cover;
+}
+.user-info span {
+  font-weight: 400;
+}

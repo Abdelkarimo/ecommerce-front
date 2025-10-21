@@ -14,12 +14,25 @@ export class Navbar {
   @Input() showLinks: boolean = true;
   currentUser: any = 0;
   isNavOpen = false;
+  user: any = null;
   banners = [
     { title: 'Get Started on Your favorite shopping' },
     { title: 'New Deals Available Now!' },
     { title: 'Best Offers for You!' },
   ];
 
+  ngOnInit() {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+      console.log(this.user);
+    }
+  }
+
+  logOut() {
+    localStorage.removeItem('user');
+    this.user = null;
+  }
   openNav() {
     this.isNavOpen = true;
   }

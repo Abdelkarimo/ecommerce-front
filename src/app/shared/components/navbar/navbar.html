@@ -66,14 +66,29 @@
             </div>
           </div>
           <div class="login_menu mb-2 mb-md-0 mx-auto">
-            <ul>
-              <li><a [routerLink]="['/cart']" fragment="cart">
+            <ul class="d-flex align-items-center">
+              <li>
+                <a [routerLink]="['/cart']" fragment="cart">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span class="padding_10">Cart</span></a>
+
               </li>
-              <li><a [routerLink]='["/login"]' fragment="login">
+              <li>
+                @if(!user)
+                {
+                <a [routerLink]='["/login"]' fragment="login">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="padding_10">Login</span></a>
+                }
+                @else{
+                <div class="user-info d-flex align-items-center gap-2">
+                  <div class="d-flex flex-column">
+                    <span>{{ user.displayName }}</span>
+                    <button (click)="logOut()" class="btn btn-sm btn-outline-dark bg-secondary mt-1">Logout</button>
+                  </div>
+                </div>
+                }
+
               </li>
             </ul>
           </div>
