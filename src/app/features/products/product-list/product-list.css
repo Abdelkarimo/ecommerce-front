@@ -16,3 +16,47 @@ app-product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+/* Make sure the product grid behaves correctly */
+#product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* spacing between cards */
+}
+
+/* Each card wrapper */
+#product-list > div {
+  flex: 1 1 calc(25% - 1rem); /* 4 cards per row, adjust gap */
+  max-width: calc(25% - 1rem);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 1200px) {
+  #product-list > div {
+    flex: 1 1 calc(33.333% - 1rem); /* 3 cards per row */
+    max-width: calc(33.333% - 1rem);
+  }
+}
+
+@media (max-width: 992px) {
+  #product-list > div {
+    flex: 1 1 calc(50% - 1rem); /* 2 cards per row */
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 576px) {
+  #product-list > div {
+    flex: 1 1 100%; /* 1 card per row */
+    max-width: 100%;
+  }
+}
+
+/* Ensure images inside cards don't overflow */
+app-product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
