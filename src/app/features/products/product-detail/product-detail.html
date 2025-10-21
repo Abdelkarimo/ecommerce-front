@@ -69,6 +69,7 @@
       <div class="mt-5">
         <h4 class="fw-bold mb-3">Customer Reviews</h4>
 
+        <!-- Reveiws from the API -->
         @for(review of product.reviews; track product.id){
         <div class="card mb-3 border-0 shadow-sm">
           <div class="card-body">
@@ -85,6 +86,28 @@
           </div>
         </div>
         }
+
+        <!-- Submission Form -->
+        <form (ngSubmit)="submitReview()" #reviewForm="ngForm" class="mb-4 p-4 border rounded shadow-sm bg-white">
+          <h5 class="fw-semibold mb-3">Write a Review</h5>
+
+          <label class="form-label fw-semibold mb-1">Rating:</label>
+          <div class="mb-3 d-flex gap-1">
+            <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
+              <li (click)="setRating(star)" [ngClass]="{'selected': (star <= newReview.rating)}">
+                <i class="fa fa-star"></i>
+              </li>
+            </ul>
+          </div>
+
+          <textarea placeholder="Write your review..." [(ngModel)]="newReview.comment" name="comment" rows="4"
+            class="form-control mb-2" required></textarea>
+
+          <button type="submit" class="btn btn-primary w-100 fw-semibold"
+            style="background-color:#f26522; border-color:#f26522;">Submit Review</button>
+        </form>
+
+
       </div>
 
 
