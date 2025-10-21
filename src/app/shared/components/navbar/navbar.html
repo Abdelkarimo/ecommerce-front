@@ -1,105 +1,133 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top py-3">
-  <div class="container d-flex justify-content-between align-items-center">
-
-    <!-- 🏪 Logo -->
-    <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" routerLink="/">
-      <i class="fa-solid fa-store me-2"></i> E-Shop
-    </a>
-
-    <!-- 📱 Toggler -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- 🌐 Navbar Content -->
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-
-      <!-- 🔗 Links (left) -->
-      <div class="flex-grow-1">
-        @if (showLinks) {
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/"
-                 routerLinkActive="active-link"
-                 [routerLinkActiveOptions]="{ exact: true }">
-                <i class="fa-solid fa-house me-2"></i> Home
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/about"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-circle-info me-2"></i> About
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/products"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-box-open me-2"></i> Products
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/favourites"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-heart me-2 text-danger"></i> Favourites
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center px-3"
-                 routerLink="/cart"
-                 routerLinkActive="active-link">
-                <i class="fa-solid fa-cart-shopping me-2"></i> Cart
-              </a>
-            </li>
-
-            
-              <!-- admin -->
-               @if(currentUser?.role === 'admin'){
-              <li class="nav-item">
-                <a class="nav-link d-flex align-items-center px-3"
-                  routerLink="/admin"
-                  routerLinkActive="active-link">
-                  <i class="fa-solid fa-user-shield me-2"></i> Admin
-                </a>
-              </li>
-            }
-          </ul>
-        }
-      </div>
-
-      <!-- 🔐 Auth Buttons (always at right) -->
-      <div class="d-flex align-items-center gap-2 ms-auto">
-        @if (!showLinks) {
-          <a routerLink="/login" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="fa-solid fa-right-to-bracket me-2"></i> Login
-          </a>
-
-          <a routerLink="/register" class="btn btn-primary d-flex align-items-center">
-            <i class="fa-solid fa-user-plus me-2"></i> Register
-          </a>
-        }
-
-        @if (showLinks) {
-          <button (click)="logout()" routerLink="/login" class="btn btn-danger d-flex align-items-center">
-            <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
-          </button>
-        }
+<!-- banner bg main start -->
+<div class="banner_bg_main">
+  <!-- header top section start -->
+  <div class="container">
+    <div class="header_section_top d-none d-md-block">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="custom_menu">
+            <ul>
+              <li><a [routerLink]='["/"]' fragment="home">Home</a></li>
+              <li><a [routerLink]='["/products"]' fragment="product-list-id">Products</a></li>
+              <li><a [routerLink]='["/favourites"]' fragment="login">Favourites</a></li>
+              <li><a [routerLink]='["/about"]' fragment="about">About</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</nav>
+  <!-- header top section start -->
+  <!-- logo section start -->
+  <div class="logo_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="logo"><a href="index.html"><img src="/assets/logo.png" class="img-fluid"></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- logo section end -->
+  <!-- header section start -->
+  <div class="header_section">
+    <div class="container">
+      <div class="containt_main d-flex flex-column flex-md-row ">
+        <div class="toggle-search-bar d-flex flex-grow-1">
+          <div id="mySidenav" class="sidenav" [style.width]="isNavOpen ? '250px' : '0'">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+            <a [routerLink]='["/"]' fragment="home">Home</a>
+            <a [routerLink]='["/products"]' fragment="product-list-id">Products</a>
+            <a [routerLink]='["/favourites"]' fragment="login">Favourites</a>
+            <a [routerLink]='["/about"]' fragment="about">About</a>
+          </div>
+          <span class="toggle_icon d-block d-md-none" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
+          <div class="main w-100">
+            <div class="d-flex flex-sm-row w-100 gap-2">
+              <input type="text" class="form-control flex-grow-1" placeholder="Search this blog">
+              <button class="btn btn-secondary flex-shrink-0" type="button"
+                style="background-color:#f26522; border-color:#f26522">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="header_box d-flex flex-wrap  align-items-md-center mt-4 mt-md-0">
+          <div class="lang_box me-2 mb-2 mb-md-0">
+            <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
+              <img src="assets/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i
+                class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu ">
+              <a href="#" class="dropdown-item">
+                <img src="assets/flag-france.png" class="mr-2" alt="flag">
+                French
+              </a>
+            </div>
+          </div>
+          <div class="login_menu mb-2 mb-md-0 mx-auto">
+            <ul class="d-flex align-items-center">
+              <li>
+                <a [routerLink]="['/cart']" fragment="cart">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  <span class="padding_10">Cart</span></a>
+
+              </li>
+              <li>
+                @if(!user)
+                {
+                <a [routerLink]='["/login"]' fragment="login">
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  <span class="padding_10">Login</span></a>
+                }
+                @else{
+                <div class="user-info d-flex align-items-center gap-2">
+                  <div class="d-flex flex-column">
+                    <span>{{ user.displayName }}</span>
+                    <button (click)="logOut()" class="btn btn-sm bg-dark mt-1 text-light">Logout</button>
+                  </div>
+                </div>
+                }
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- header section end -->
+  <!-- banner section start -->
+  <div class="banner_section layout_padding">
+    <div class="container">
+      <div id="my_slider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active" *ngFor="let banner of banners; let i = index" [class.active]="i === 0">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <h1 class="banner_taital fs-1 fs-sm-3">{{ banner.title }}</h1>
+                <div class="buynow_bt fs-1 fs-sm-3">
+                  <a routerLink="/products">Buy Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#my_slider" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#my_slider" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- banner section end -->
+</div>

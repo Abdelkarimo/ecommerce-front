@@ -1,54 +1,64 @@
-  import { Component } from '@angular/core';
-  import { Auth } from '../../../core/auth/auth';
-  import { FormsModule } from '@angular/forms';
-  import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-  import {  getAuth,
+import { Component, AfterViewInit } from '@angular/core';
+import { Auth } from '../../../core/auth/auth';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  getAuth,
   signInWithPopup,
   FacebookAuthProvider,
   GoogleAuthProvider,
   fetchSignInMethodsForEmail,
   linkWithCredential,
-  OAuthCredential
+  OAuthCredential,
 } from '@angular/fire/auth';
 
-  @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [FormsModule, RouterLink, RouterLinkActive],
-    templateUrl: './login.html',
-    styleUrl: './login.css'
-  })
-  export class Login {
-    formData = { email: '', password: '' };
-    errorMessage = '';
-    temp = false;
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule, RouterLink, RouterLinkActive],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
+})
+export class Login implements AfterViewInit {
+  formData = { email: '', password: '' };
+  errorMessage = '';
+  temp = false;
 
-    constructor(public auth: Auth, private router: Router) {}
+  constructor(public auth: Auth, private router: Router) {}
 
-    onSubmit() {
-      this.errorMessage = '';
-      this.temp = this.auth.login(this.formData);
-      if (!this.temp) this.errorMessage = 'Invalid email or password.';
-      else this.router.navigate(['/']);
-    }
-
-    async loginWithGoogle() {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-
-      try {
-        const result = await signInWithPopup(auth, provider);
-        console.log('✅ Google user:', result.user);
-        localStorage.setItem('user', JSON.stringify(result.user));
-        this.router.navigate(['/']);
-      } catch (error) {
-        console.error('Google login error:', error);
-        this.errorMessage = 'Google login failed. Please try again.';
+  ngAfterViewInit() {
+    // scroll to the login section once the page loads
+    setTimeout(() => {
+      const element = document.getElementById('login');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    }, 100);
+  }
+
+  onSubmit() {
+    this.errorMessage = '';
+    this.temp = this.auth.login(this.formData);
+    if (!this.temp) this.errorMessage = 'Invalid email or password.';
+    else this.router.navigate(['/']);
+  }
+
+  async loginWithGoogle() {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log('✅ Google user:', result.user);
+      localStorage.setItem('user', JSON.stringify(result.user));
+      this.router.navigate(['/']);
+    } catch (error) {
+      console.error('Google login error:', error);
+      this.errorMessage = 'Google login failed. Please try again.';
     }
+  }
 
-
-async loginWithFacebook() {
+  async loginWithFacebook() {
     const auth = getAuth();
     const provider = new FacebookAuthProvider();
 
@@ -57,7 +67,6 @@ async loginWithFacebook() {
       console.log('✅ Facebook user:', result.user);
       localStorage.setItem('user', JSON.stringify(result.user));
       this.router.navigate(['/']);
-
     } catch (error: any) {
       console.error('❌ Facebook login error:', error);
 
@@ -76,7 +85,9 @@ async loginWithFacebook() {
         console.log('🔹 Existing sign-in methods:', methods);
 
         if (methods.includes('google.com')) {
-          alert('هذا البريد مسجل بالفعل باستخدام Google. الرجاء تسجيل الدخول بـ Google لتوحيد الحساب.');
+          alert(
+            'هذا البريد مسجل بالفعل باستخدام Google. الرجاء تسجيل الدخول بـ Google لتوحيد الحساب.'
+          );
 
           const googleProvider = new GoogleAuthProvider();
           const googleResult = await signInWithPopup(auth, googleProvider);
@@ -91,7 +102,6 @@ async loginWithFacebook() {
         } else {
           this.errorMessage = 'هذا البريد مسجل بطريقة مختلفة. برجاء تسجيل الدخول بنفس الطريقة.';
         }
-
       } else if (error.code === 'auth/popup-closed-by-user') {
         console.warn('🟡 المستخدم أغلق نافذة تسجيل الدخول قبل الإكمال.');
       } else {
@@ -99,4 +109,4 @@ async loginWithFacebook() {
       }
     }
   }
-  }
+}

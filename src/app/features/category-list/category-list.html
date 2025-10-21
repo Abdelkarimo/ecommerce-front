@@ -1,0 +1,16 @@
+<section id="category-list">
+  <h1 style="text-align: center;" class="m-5">
+    {{categoryName[0].toUpperCase()}}{{categoryName.slice(1,categoryName.length)}}</h1>
+
+  <div id="product-list" class="product-grid d-flex flex-wrap gap-4 justify-content-center container">
+
+    @for(product of products ;track product.id){
+    <app-product-card [product]="product"></app-product-card>
+    }
+    @empty {
+    <div class="text-center text-muted py-5">
+      <h5>No products found</h5>
+    </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,112 @@
+/* Panel container */
+.filter-panel {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Section titles */
+.filter-section h6 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #f26522;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+}
+
+/* Action Buttons */
+.filter-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-actions .btn {
+  flex: 1;
+  padding: 0.5rem 0;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+/* Apply button */
+.btn-custom {
+  background-color: #f26522 !important;
+  color: #fff !important;
+  border: none !important;
+  margin: 0;
+}
+
+.btn-custom:hover {
+  background-color: #be4e1a !important;
+  transform: scale(1.03);
+}
+
+/* Reset button */
+.rstbtn {
+  background-color: #fff !important;
+  color: #333 !important;
+  border: 2px solid #cecece !important;
+}
+
+.rstbtn:hover {
+  background-color: #f8f8f8 !important;
+  border-color: #bcbcbc !important;
+  transform: scale(1.03);
+}
+
+/* Select dropdown */
+.form-select {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-select:focus {
+  border-color: #f26522;
+  box-shadow: 0 0 0 0.2rem rgba(242, 101, 34, 0.25);
+  outline: none;
+}
+
+/* Checkbox */
+.form-check-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 0.25rem;
+  border: 1.5px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.form-check-input:checked {
+  background-color: #f26522;
+  border-color: #ff6924;
+}
+
+.form-check-label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-actions {
+    flex-direction: column;
+  }
+}
