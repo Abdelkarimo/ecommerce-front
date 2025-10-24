@@ -30,7 +30,7 @@ export class OrderConfirmation implements OnInit {
     } else {
       // If no order found, redirect to landing page after a short delay
       setTimeout(() => {
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/products']);
       }, 2000);
     }
 
@@ -39,7 +39,7 @@ export class OrderConfirmation implements OnInit {
       this.countdown--;
       if (this.countdown <= 0) {
         clearInterval(timer);
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/products']);
       }
     }, 1000);
   }
