@@ -1,62 +1,112 @@
+<!-- =========================================================
+     Cart Page Template
+     Displays all products in the user's cart with quantity controls
+     and shows an order summary with total price.
+========================================================= -->
+
 <div class="container my-5">
-    <div class="row g-4">
-        <!-- Left: Cart Items -->
-        <div class="col-lg-8">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-body p-4">
-                            <h4 class="card-title mb-4 section-title">
-                                <i class="fas fa-shopping-cart brand-primary me-2"></i>
-                                Your Cart
-                            </h4>
+  <div class="row g-4">
 
-                    <div *ngIf="allProducts && allProducts.length > 0; else emptyCart">
-                        <div *ngFor="let item of allProducts; trackBy: trackById" class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center">
-                              <img [src]="item.data.thumbnail || item.data.image" [alt]="item.data.title" class="rounded-img" style="width:80px; height:80px;">
-                            <div class="flex-grow-1">
-                                <h6 class="mb-1">{{ item.data.title }}</h6>
-                                <div class="text-muted">ID: {{ item.data.id }} • User: {{ item.userId }}</div>
-                                <div class="fw-bold brand-primary mt-1">USD {{ (item.data.price * (1 - item.data.discountPercentage/100)) | number:'1.2-2' }}</div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="d-flex align-items-center gap-2 mb-2">
-                                      <button class="btn btn-sm btn-outline-danger" (click)="deduct(item.data.id)">-</button>
-                                    <div class="px-2">{{ item.quantity }}</div>
-                                      <button class="btn btn-sm btn-outline-success" (click)="addMore(item.data.id)">+</button>
-                                </div>
-                                <button class="btn btn-link text-danger small" (click)="removeItem(item.data.id)">Remove</button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- 🛒 Left Section: Cart Items -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body p-4">
 
-                    <ng-template #emptyCart>
-                        <div class="text-center text-muted py-5">
-                            <i class="fas fa-shopping-cart fa-3x mb-3"></i>
-                            <p class="mb-0">Nothing to show. Go buy some stuff!</p>
-                        </div>
-                    </ng-template>
+          <!-- Section Title -->
+          <h4 class="card-title mb-4 section-title">
+            <i class="fas fa-shopping-cart brand-primary me-2"></i>
+            Your Cart
+          </h4>
+
+          <!-- ✅ Display Cart Items if Available -->
+          <div *ngIf="allProducts && allProducts.length > 0; else emptyCart">
+            <div
+              *ngFor="let item of allProducts; trackBy: trackById"
+              class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center"
+            >
+              <!-- Product Image -->
+              <img
+                [src]="item.data.thumbnail || item.data.image"
+                [alt]="item.data.title"
+                class="rounded-img"
+                style="width:80px; height:80px;"
+              />
+
+              <!-- Product Info -->
+              <div class="flex-grow-1">
+                <h6 class="mb-1">{{ item.data.title }}</h6>
+                <div class="text-muted">
+                  ID: {{ item.data.id }} • User: {{ item.userId }}
                 </div>
-            </div>
-        </div>
-
-        <!-- Right: Summary -->
-        <div class="col-lg-4" *ngIf="allProducts && allProducts.length > 0">
-            <div class="card shadow-sm" >
-                <div class="card-body p-4">
-                    <h4 class="card-title mb-4">
-                        <i class="fas fa-receipt text-primary me-2"></i>
-                        Order Summary
-                    </h4>
-
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Subtotal</span>
-                        <span class="fw-semibold">USD {{ total | number:'1.2-2' }}</span>
-                    </div>
-
-                    <div class="mt-4">
-                        <button class="btn btn-outline-success w-100" (click)="proceedToCheckout()">Proceed to Checkout</button>
-                    </div>
+                <div class="fw-bold brand-primary mt-1">
+                  USD {{ (item.data.price * (1 - item.data.discountPercentage / 100)) | number:'1.2-2' }}
                 </div>
+              </div>
+
+              <!-- Quantity Controls -->
+              <div class="d-flex flex-column align-items-center">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deduct(item.data.id)"
+                  >-</button>
+
+                  <div class="px-2">{{ item.quantity }}</div>
+
+                  <button
+                    class="btn btn-sm btn-outline-success"
+                    (click)="addMore(item.data.id)"
+                  >+</button>
+                </div>
+
+                <!-- Remove Button -->
+                <button
+                  class="btn btn-link text-danger small"
+                  (click)="removeItem(item.data.id)"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
+          </div>
+
+          <!-- 🕳 Empty Cart Message -->
+          <ng-template #emptyCart>
+            <div class="text-center text-muted py-5">
+              <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+              <p class="mb-0">Nothing to show. Go buy some stuff!</p>
+            </div>
+          </ng-template>
         </div>
+      </div>
     </div>
+
+    <!-- 💰 Right Section: Order Summary -->
+    <div class="col-lg-4" *ngIf="allProducts && allProducts.length > 0">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-4">
+            <i class="fas fa-receipt text-primary me-2"></i>
+            Order Summary
+          </h4>
+
+          <!-- Total Amount -->
+          <div class="d-flex justify-content-between mb-2">
+            <span class="text-muted">Subtotal</span>
+            <span class="fw-semibold">USD {{ total | number:'1.2-2' }}</span>
+          </div>
+
+          <!-- Checkout Button -->
+          <div class="mt-4">
+            <button
+              class="btn btn-outline-success w-100"
+              (click)="proceedToCheckout()"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

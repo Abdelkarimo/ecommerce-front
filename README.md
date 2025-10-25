@@ -1,59 +1,80 @@
-# EcommerceFront
+# E-Store Angular Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+A **fully-featured e-commerce web application** built with **Angular 20**, allowing users to browse products, manage favourites and carts, place orders, and access an admin dashboard. Supports both **normal authentication** and **social login** (Google & Facebook) with persistent data using `localStorage`.
 
-## Development server
+---
 
-To start a local development server, run:
+## Table of Contents
 
-```bash
-ng serve
-```
+- [Project Overview](#project-overview)  
+- [Features](#features)  
+- [Technologies](#technologies)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Project Structure](#project-structure)  
+- [Authentication & Social Login](#authentication--social-login)  
+- [Admin Dashboard](#admin-dashboard)  
+- [Firebase Integration](#firebase-integration)  
+- [API Integration](#api-integration)  
+- [Screenshots](#screenshots)  
+- [Future Improvements](#future-improvements)  
+- [License](#license)  
+- [Author](#author)  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Project Overview
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+This Angular project is a **client-side e-commerce platform** that simulates:
 
-```bash
-ng generate component component-name
-```
+- Product catalog browsing
+- Category filtering
+- Search functionality
+- Cart management
+- Favourites (wishlist) management
+- Checkout and order confirmation
+- Admin dashboard for monitoring users and orders
+- Social login via Google and Facebook
+- Persistent user data through localStorage  
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+It uses a **dummy JSON API** for product data and **Angular Signals** for reactive state management.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Features
 
-To build the project run:
+### User Features
+- **Product Catalog:** Browse all products with search and category filters.
+- **Favourites/Wishlist:** Add/remove favourite products.
+- **Shopping Cart:** Add/remove products, adjust quantity, and view cart summary.
+- **Order Management:** Place orders and view order confirmation details.
+- **Social Login:** Sign in with Google or Facebook.
+- **Responsive Design:** Fully responsive UI with Bootstrap 5.
+- **Local Storage:** User, cart, favourites, and orders stored persistently.
 
-```bash
-ng build
-```
+### Admin Features
+- **Dashboard Overview:** Total users, total orders, pending orders.
+- **Users Table:** View registered users and roles.
+- **Orders Table:** View all orders with status (Pending/Delivered).
+- **Role-Based Access:** Admin routes protected with **authGuard**.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Technologies
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Frontend:** Angular 20, TypeScript, RxJS  
+- **Styling:** Bootstrap 5, FontAwesome  
+- **Authentication:** Custom + Social (Google & Facebook)  
+- **State Management:** Angular Signals (Reactive user & social state)  
+- **Backend:** Dummy JSON API ([https://dummyjson.com/products](https://dummyjson.com/products))  
+- **Analytics:** Firebase Analytics  
+- **Tools:** VS Code, Git  
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## Installation
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Abdelkarimo/estore-angular.git
+   cd estore-angular

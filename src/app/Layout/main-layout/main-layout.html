@@ -1,6 +1,14 @@
-<app-navbar class="navbar" ></app-navbar>
+<!-- 🏠 Main Layout Template -->
+<!-- This layout defines the overall structure for main website pages -->
+
+<!-- 🔝 Navigation bar (visible on all main pages) -->
+<app-navbar class="navbar"></app-navbar>
+
+<!-- 📄 Main content area where routed components will appear -->
 <main class="main-container">
+  <!-- Router outlet dynamically loads components like Landing, Products, etc. -->
   <router-outlet></router-outlet>
 </main>
 
+<!-- 🔻 Footer section (common site footer) -->
 <app-footer></app-footer>
