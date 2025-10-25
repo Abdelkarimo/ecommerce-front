@@ -2,13 +2,13 @@
   width: 100%;
   background-image: url('/assets/54783.jpg');
   object-fit: cover;
-  height: auto;
+  height: 92px;
   background-size: 100%;
   background-repeat: no-repeat;
 }
 @media (max-width: 767px) {
   .banner_bg_main {
-    height: 450px; /* smaller height for mobile */
+    height: 93px; /* smaller height for mobile */
   }
 
   .banner_taital {
@@ -216,7 +216,7 @@
 }
 
 .login_menu li a:hover {
-  color: #30302e;
+  color: #f26522;
 }
 
 /* flage css start */
@@ -231,7 +231,7 @@
 
 .nav-link {
   display: block;
-  padding: 0.4rem 1rem;
+  padding: 0.0rem 1rem;
 }
 
 a:hover {
@@ -240,7 +240,7 @@ a:hover {
 }
 
 .padding_10:hover {
-  color: #30302e;
+  color: #f26522;
 }
 
 /* banner section start */
@@ -343,4 +343,24 @@ a:hover {
 }
 .user-info span {
   font-weight: 400;
+}
+
+
+/* Remove any extra space at the very top */
+.banner_bg_main,
+.header_section_top,
+.container {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Keep only the desired padding inside header */
+.header_section_top {
+  padding: 0 !important; /* Remove the 10px top/bottom padding */
+  background-color: #2b2a29;
+}
+
+/* Optional: Add controlled padding inside the links area if needed */
+.custom_menu {
+  padding: 8px 0;
 }

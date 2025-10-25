@@ -3,34 +3,92 @@
   <!-- header top section start -->
   <div class="container">
     <div class="header_section_top d-none d-md-block">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="custom_menu">
-            <ul>
-              <li><a [routerLink]='["/"]' fragment="home">Home</a></li>
-              <li><a [routerLink]='["/products"]' fragment="product-list-id">Products</a></li>
-              <li><a [routerLink]='["/favourites"]' fragment="login">Favourites</a></li>
-              <li><a [routerLink]='["/about"]' fragment="about">About</a></li>
-            </ul>
+      <div class="custom_menu mb-auto ps-4 pe-4">
+        <ul class="d-flex align-items-center justify-content-between w-100">
+          <!-- Left links -->
+          <div class="d-flex align-items-center  flex-wrap">
+            <li><a [routerLink]='["/"]' fragment="home">Home</a></li>
+            <li><a [routerLink]='["/products"]' fragment="product-list-id">Products</a></li>
+            <li><a [routerLink]='["/about"]' fragment="about">About</a></li>
+
           </div>
+
+          <!-- Right links (Login/Logout/Cart/User Info) -->
+          <div class="d-flex align-items-center gap-0 flex-wrap">
+
+            @if(!user) {
+            <li>
+              <a [routerLink]='["/login"]' fragment="login">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span class="padding_10">Login</span>
+              </a>
+            </li>
+            }
+            @else {
+            <li class="d-flex align-items-center gap-2 user-info">
+              @if(!user.picture){
+              <i class="fa fa-user-circle text-light fs-4"></i>
+              }
+              @else {
+              <img [src]="user.picture" alt="User" class="rounded-circle border border-light" width="35" height="35" />
+              }
+
+              <span class="fw-semibold text-light">{{ user?.name }}</span>
+            </li>
+
+            <li class="position-relative ">
+              <a [routerLink]="['/favourites']" fragment="favourites" class="position-relative">
+                <i class="fa fa-heart ms-1" aria-hidden="true"></i>
+                <span class="padding_10">Favourites</span>
+                @if (favouritesCount >0){
+                <span class="position-absolute top-0  start-0 translate-middle badge rounded-pill bg-danger">
+                  {{ favouritesCount }}
+                </span>
+                }
+
+              </a>
+            </li>
+
+            <li class="position-relative ">
+              <a [routerLink]="['/cart']" fragment="cart" class="position-relative">
+                <i class="fa fa-shopping-cart ms-2" aria-hidden="true"></i>
+                <span class="padding_10">Cart</span>
+                @if (cartCount > 0 ){
+                <span class="position-absolute top-0 start-0  translate-middle badge rounded-pill bg-primary">
+                  {{ cartCount }}
+                </span>
+                }
+
+              </a>
+            </li>
+
+
+            <li>
+              <a (click)="logOut()" class="logout-link">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span class="padding_10">Logout</span>
+              </a>
+            </li>
+            }
+
+          </div>
+        </ul>
+        <div class="d-flex flex-sm-row w-100 gap-2 ms-4 pe-5 mt-2">
+          <input type="text" class="form-control flex-grow-1" placeholder="Search this blog" [(ngModel)]="searchTerm"
+            (keydown.enter)="SearchItems()">
+          <button class="btn btn-secondary flex-shrink-0" type="button"
+            style="background-color:#f26522; border-color:#f26522" (click)="SearchItems()">
+            <i class="fa fa-search"></i>
+          </button>
         </div>
       </div>
+
     </div>
   </div>
   <!-- header top section start -->
-  <!-- logo section start -->
-  <div class="logo_section">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="logo"><a href="index.html"><img src="/assets/logo.png" class="img-fluid"></a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- logo section end -->
+
   <!-- header section start -->
-  <div class="header_section">
+  <div class="header_section p-0">
     <div class="container">
       <div class="containt_main d-flex flex-column flex-md-row ">
         <div class="toggle-search-bar d-flex flex-grow-1">
@@ -38,95 +96,72 @@
             <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
             <a [routerLink]='["/"]' fragment="home">Home</a>
             <a [routerLink]='["/products"]' fragment="product-list-id">Products</a>
-            <a [routerLink]='["/favourites"]' fragment="login">Favourites</a>
             <a [routerLink]='["/about"]' fragment="about">About</a>
-          </div>
-          <span class="toggle_icon d-block d-md-none" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
-          <div class="main w-100">
-            <div class="d-flex flex-sm-row w-100 gap-2">
-              <input type="text" class="form-control flex-grow-1" placeholder="Search this blog">
-              <button class="btn btn-secondary flex-shrink-0" type="button"
-                style="background-color:#f26522; border-color:#f26522">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="header_box d-flex flex-wrap  align-items-md-center mt-4 mt-md-0">
-          <div class="lang_box me-2 mb-2 mb-md-0">
-            <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-              <img src="assets/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i
-                class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+
+            @if(!user) {
+
+            <a [routerLink]='["/login"]' fragment="login">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span class="padding_10">Login</span>
             </a>
-            <div class="dropdown-menu ">
-              <a href="#" class="dropdown-item">
-                <img src="assets/flag-france.png" class="mr-2" alt="flag">
-                French
-              </a>
-            </div>
-          </div>
-          <div class="login_menu mb-2 mb-md-0 mx-auto">
-            <ul class="d-flex align-items-center">
-              <li>
-                <a [routerLink]="['/cart']" fragment="cart">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  <span class="padding_10">Cart</span></a>
 
-              </li>
-              <li>
-                @if(!user) {
-                <a [routerLink]='["/login"]' fragment="login">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">Login</span>
-                </a>
-                } @else {
-                <div class="user-info d-flex align-items-center gap-2">
+            }
+            @else {
+            <a class="d-flex align-items-center gap-2 user-info">
+              @if(!user.picture){
+              <i class="fa fa-user-circle text-light fs-4"></i>
+              }
+              @else {
+              <img [src]="user.picture" alt="User" class="rounded-circle border border-light" width="35" height="35" />
+              }
 
-                  <div class="d-flex flex-column">
-                    <span class="fw-bold">{{ user.name }}</span>
-                    <button (click)="logOut()" class="btn btn-sm bg-dark mt-1 text-light">Logout</button>
-                  </div>
-                </div>
+              <span class="fw-semibold text-light">{{ user?.name }}</span>
+            </a>
+
+
+            <a [routerLink]="['/favourites']" fragment="favourites" class="position-relative">
+              <i class="fa fa-heart ms-1" aria-hidden="true"></i>
+              <span class="padding_10 me-2">Favourites</span>
+              @if (favouritesCount >0){
+              <span class=" translate-middle rounded-pill bg-danger">
+                {{ favouritesCount }}
+              </span>
+              }
+
+            </a>
+
+
+            <li class="position-relative ">
+              <a [routerLink]="['/cart']" fragment="cart" class="position-relative">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span class="padding_10 me-2">Cart</span>
+                @if (cartCount > 0 ){
+                <span class="  translate-middle rounded-pill bg-primary">
+                  {{ cartCount }}
+                </span>
                 }
-              </li>
-            </ul>
+
+              </a>
+            </li>
+
+
+            <li>
+              <a (click)="logOut()" class="logout-link">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <span class="padding_10">Logout</span>
+              </a>
+            </li>
+            }
           </div>
+
+          <span class="toggle_icon d-block d-md-none pt-4" (click)="openNav()"><img src="assets/toggle-icon.png"></span>
+
         </div>
+
       </div>
     </div>
   </div>
   <!-- header section end -->
-  <!-- banner section start -->
-  <div class="banner_section layout_padding">
-    <div class="container">
-      <div id="my_slider" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-
-          <div class="carousel-item active" *ngFor="let banner of banners; let i = index" [class.active]="i === 0">
-            <div class="row">
-              <div class="col-sm-12 text-center">
-                <h1 class="banner_taital fs-1 fs-sm-3">{{ banner.title }}</h1>
-                <div class="buynow_bt fs-1 fs-sm-3">
-                  <a routerLink="/products">Buy Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#my_slider" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#my_slider" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- banner section end -->
 </div>

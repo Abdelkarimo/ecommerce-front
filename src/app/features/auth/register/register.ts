@@ -12,13 +12,14 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
 } from '@angular/fire/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
-  imports: [FormsModule, RouterLink, RouterLinkActive],
+  imports: [FormsModule, RouterLink, RouterLinkActive, CommonModule],
 })
 export class Register {
   formData = { name: '', email: '', password: '' };

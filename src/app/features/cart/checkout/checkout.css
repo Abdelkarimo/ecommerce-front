@@ -1,0 +1,86 @@
+/* ==============================
+   Bootstrap Primary & Secondary Override
+   ============================== */
+
+/* Primary Color (replace blue) */
+:root {
+  --bs-primary: #f26522;       /* main orange for buttons, links, highlights */
+  --bs-primary-rgb: 242,101,34; /* for rgba() usage */
+  --bs-primary-hover: #e0551b;  /* slightly darker on hover */
+}
+
+/* Secondary Color (replace green) */
+:root {
+  --bs-secondary: #2b2a29;     /* dark neutral for secondary buttons/alerts */
+  --bs-secondary-rgb: 43,42,41;
+  --bs-secondary-hover: #1e1d1c;
+}
+
+/* Apply to buttons */
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  color: #fff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--bs-primary-hover) !important;
+  border-color: var(--bs-primary-hover) !important;
+  color: #fff !important;
+}
+
+.btn-secondary {
+  background-color: var(--bs-secondary) !important;
+  border-color: var(--bs-secondary) !important;
+  color: #fff !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--bs-secondary-hover) !important;
+  border-color: var(--bs-secondary-hover) !important;
+  color: #fff !important;
+}
+
+/* Links */
+a,
+a:hover,
+a:focus {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--bs-primary-hover);
+  text-decoration: underline;
+}
+
+/* Alerts */
+.alert-primary {
+  background-color: var(--bs-primary)20; /* light transparent orange */
+  color: var(--bs-primary);
+  border-color: var(--bs-primary)40;
+}
+
+.alert-secondary {
+  background-color: var(--bs-secondary)20;
+  color: var(--bs-secondary);
+  border-color: var(--bs-secondary)40;
+}
+
+/* Form focus border override */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 5px rgba(var(--bs-primary-rgb),0.3) !important;
+}
+
+/* Progress bars (if used) */
+.bg-primary {
+  background-color: var(--bs-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--bs-secondary) !important;
+}

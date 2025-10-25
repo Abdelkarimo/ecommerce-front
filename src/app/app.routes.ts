@@ -23,10 +23,12 @@ import { ProductCrud } from './features/admin/product-crud/product-crud';
 import { authGuard } from './core/auth/auth-guard';
 import { CategoryList } from './features/category-list/category-list';
 import { OrderConfirmation } from './features/order-confirmation/order-confirmation';
+import { ProductSearch } from './features/products/product-search/product-search';
 
 export const routes: Routes = [
   // 🏠 Public pages (Main Layout)
   {
+    
     path: '',
     component: MainLayout,
     children: [
@@ -35,6 +37,7 @@ export const routes: Routes = [
       { path: 'about', component: About },
       { path: 'products', component: ProductList },
       { path: 'products/:id', component: ProductDetail },
+      { path: 'search/:query', component: ProductSearch},
       // ### protected routes
       { path: 'cart', component: Cart, canActivate: [authGuard] },
       { path: 'checkout', component: Checkout, canActivate: [authGuard] },
