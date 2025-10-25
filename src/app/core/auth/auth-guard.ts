@@ -1,42 +1,47 @@
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
 import { Auth } from './auth';
 import { SocialAuth } from './social-auth';
-import { inject } from '@angular/core';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  
-  
+/**
+ * AuthGuard function to protect routes.
+ * Checks if a user is logged in (normal or social login)
+ * and optionally enforces role-based access.
+ */
+export const authGuard: CanActivateFn = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+): boolean | import("@angular/router").UrlTree => {
+
   const auth = inject(Auth);
   const social = inject(SocialAuth);
   const router = inject(Router);
 
-  // Get current user (normal + social)
+  // Get currently logged-in users
   const currentUser = auth.getCurrentUser();
   const socialUser = social.getCurrentUser();
 
   const isLoggedIn = !!currentUser || !!socialUser;
 
-  // Not logged in → redirect to login
+  // Not logged in → redirect to login page
   if (!isLoggedIn) {
     return router.createUrlTree(['/login']);
   }
 
-  // Role-based guard (optional)
-  const requiredRole = route.data?.['role'];
+  // Role-based access check (optional)
+  const requiredRole = route.data?.['role'] as string | undefined;
   if (requiredRole) {
-    
-    let userRole = 'user';
-    if (currentUser && currentUser.role) {
-      userRole = currentUser.role;
-    } else if (socialUser && socialUser.role) {
-      userRole = socialUser.role;
-    }
+    let userRole: string = 'user'; // default role
+
+    if (currentUser?.role) userRole = currentUser.role;
+    else if (socialUser?.role) userRole = socialUser.role;
 
     if (userRole !== requiredRole) {
-      // Not authorized → redirect to home
+      // Not authorized → redirect to home page
       return router.createUrlTree(['/']);
     }
   }
 
+  // Access granted
   return true;
 };

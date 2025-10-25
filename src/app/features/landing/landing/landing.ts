@@ -10,11 +10,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './landing.css',
 })
 export class Landing implements OnInit, OnDestroy {
+  /** Controls the navigation menu visibility (for mobile or sidebar use) */
   isNavOpen = false;
+
+  /** Index of the currently active category in the carousel */
   activeIndex = 0;
 
+  /** Holds the interval reference for auto-sliding the carousel */
   autoSlideInterval: any;
 
+  /** 🏷️ List of product categories displayed on the landing page */
   categories = [
     {
       name: 'Fragrances',
@@ -58,19 +63,23 @@ export class Landing implements OnInit, OnDestroy {
     },
   ];
 
+  // 🔹 Lifecycle Hooks
+  /** Starts the auto-slide carousel when the component initializes */
   ngOnInit() {
-    // Auto-slide every 4 seconds
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
-    }, 4000);
+    }, 4000); // Slide every 4 seconds
   }
 
+  /** Clears the auto-slide interval when component is destroyed */
   ngOnDestroy() {
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
     }
   }
 
+  // 🔹 Carousel Controls
+  /** Moves the carousel to the previous category */
   prevSlide() {
     this.activeIndex =
       this.activeIndex === 0
@@ -78,6 +87,7 @@ export class Landing implements OnInit, OnDestroy {
         : this.activeIndex - 1;
   }
 
+  /** Moves the carousel to the next category */
   nextSlide() {
     this.activeIndex =
       this.activeIndex === this.categories.length - 1
@@ -85,10 +95,13 @@ export class Landing implements OnInit, OnDestroy {
         : this.activeIndex + 1;
   }
 
+  // 🔹 Navigation Controls
+  /** Opens the navigation menu */
   openNav() {
     this.isNavOpen = true;
   }
 
+  /** Closes the navigation menu */
   closeNav() {
     this.isNavOpen = false;
   }

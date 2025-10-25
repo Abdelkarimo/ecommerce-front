@@ -1,18 +1,30 @@
+<!-- 🔹 Register Page -->
 <section id="register">
   <div class="container mt-5 pt-5" style="max-width: 420px;">
     <div class="card shadow-lg border-0 p-4 rounded-4">
+      <!-- 🧩 Page Title -->
       <h3 class="text-center fw-bold mb-4 text-orange">
         <i class="fa-solid fa-user-plus me-2"></i>Sign Up
       </h3>
 
+      <!-- ✅ Success Message -->
       @if (message) {
         <div class="alert alert-success text-center py-2">{{ message }}</div>
       }
+
+      <!-- ❌ Error Message -->
       @if (errorMessage) {
         <div class="alert alert-danger text-center py-2">{{ errorMessage }}</div>
       }
 
-      <form #registerForm="ngForm" (ngSubmit)="onSubmit()" novalidate autocomplete="off">
+      <!-- 📝 Registration Form -->
+      <form
+        #registerForm="ngForm"
+        (ngSubmit)="onSubmit()"
+        novalidate
+        autocomplete="off"
+      >
+        <!-- 🧍‍♂️ Full Name -->
         <div class="mb-3">
           <label for="name" class="form-label fw-semibold">Full Name</label>
           <input
@@ -24,11 +36,13 @@
             required
             #name="ngModel"
           />
+          <!-- ⚠️ Validation Message -->
           <div *ngIf="name.invalid && name.touched" class="text-danger mt-1">
             Name is required.
           </div>
         </div>
 
+        <!-- 📧 Email -->
         <div class="mb-3">
           <label for="email" class="form-label fw-semibold">Email</label>
           <input
@@ -42,6 +56,7 @@
           />
         </div>
 
+        <!-- 🔒 Password -->
         <div class="mb-3">
           <label for="password" class="form-label fw-semibold">Password</label>
           <input
@@ -55,6 +70,7 @@
           />
         </div>
 
+        <!-- 🔘 Submit Button -->
         <button
           class="btn btn-primary w-100 py-2 fw-semibold"
           type="submit"
@@ -64,12 +80,13 @@
         </button>
       </form>
 
-      <!-- Divider -->
+      <!-- ─────────────── Divider ─────────────── -->
       <div class="text-center my-3">
         <span class="text-muted">OR</span>
       </div>
 
-      <!-- Social Buttons -->
+      <!-- 🌐 Social Sign Up Buttons -->
+      <!-- Google -->
       <button
         class="btn btn-outline-danger w-100 py-2 mb-2 fw-semibold d-flex align-items-center justify-content-center"
         (click)="registerWithGoogle()"
@@ -78,6 +95,7 @@
         <i class="fa-brands fa-google me-2"></i> Continue with Google
       </button>
 
+      <!-- Facebook -->
       <button
         class="btn btn-outline-primary w-100 py-2 fw-semibold d-flex align-items-center justify-content-center"
         (click)="registerWithFacebook()"
@@ -86,6 +104,7 @@
         <i class="fa-brands fa-facebook me-2"></i> Continue with Facebook
       </button>
 
+      <!-- 🔁 Redirect to Login -->
       <p class="text-center mt-4 mb-0">
         Already have an account?
         <a routerLink="/login" class="text-decoration-none fw-semibold">Login</a>

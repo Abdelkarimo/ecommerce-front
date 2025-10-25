@@ -1,22 +1,29 @@
+<!-- Admin Dashboard Page -->
 <div class="container my-5 pt-5">
+  <!-- Page Title -->
   <h2 class="text-primary text-center mb-4">
     <i class="fa-solid fa-gauge me-2"></i>Admin Dashboard
   </h2>
 
-  <!-- Summary Cards -->
+  <!-- Summary Cards: Total Users, Total Orders, Pending Orders -->
   <div class="row g-3 mb-4">
+    <!-- Total Users Card -->
     <div class="col-md-4">
       <div class="card shadow-sm text-center p-3">
         <h5>Total Users</h5>
         <h3 class="text-success">{{ totalUsers }}</h3>
       </div>
     </div>
+
+    <!-- Total Orders Card -->
     <div class="col-md-4">
       <div class="card shadow-sm text-center p-3">
         <h5>Total Orders</h5>
         <h3 class="text-info">{{ totalOrders }}</h3>
       </div>
     </div>
+
+    <!-- Pending Orders Card -->
     <div class="col-md-4">
       <div class="card shadow-sm text-center p-3">
         <h5>Pending Orders</h5>

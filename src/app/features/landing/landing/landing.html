@@ -1,43 +1,65 @@
-<!-- header top section start -->
-<!-- logo section start -->
+<!-- 🌟 Main Landing Page Template -->
+
+<!-- 🔹 Header Section (Logo & Top Banner) -->
 <div class="banner_bg_main">
+  <!-- 🏷️ Logo Section -->
   <div class="logo_section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <div class="logo"><a href="index.html"><img src="/assets/logo.png" class="img-fluid"></a></div>
+        <div class="col-sm-12 text-center">
+          <div class="logo">
+            <a href="index.html">
+              <img src="/assets/logo.png" class="img-fluid" alt="E-commerce Logo" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- logo section end -->
-  
-  <!-- header section end -->
 
-  <!-- banner section start -->
+  <!-- 🔹 Banner / Carousel Section -->
   <div class="banner_section mt-3">
     <div class="container position-relative">
       <div class="category-carousel">
         <div class="carousel-inner position-relative">
+          
+          <!-- 🖼️ Dynamic Category Slides -->
           @for (category of categories; track category.name; let i = $index) {
-          <div class="carousel-item" [class.active]="i === activeIndex">
-            <div class="d-flex flex-column align-items-center text-center">
-              <img [src]="category.image" class="category-slide-img rounded shadow-lg" [alt]="category.name" />
-              <h2 class="banner_taital mt-3">
-                {{ category.name.replace('-', ' ') | titlecase }}
-              </h2>
-              <p class="text-light mb-3">{{ category.description }}</p>
-              <div class="card-body">
-              <a [routerLink]="['/category-list']" [queryParams]="{ category: category.name }"
-                class="btn btn-pr btn-lg ">View Products</a></div>
-            </div>
-          </div>
-          }
+            <div class="carousel-item" [class.active]="i === activeIndex">
+              <div class="d-flex flex-column align-items-center text-center">
+                
+                <!-- Category Image -->
+                <img
+                  [src]="category.image"
+                  class="category-slide-img rounded shadow-lg"
+                  [alt]="category.name"
+                />
 
+                <!-- Category Title -->
+                <h2 class="banner_taital mt-3">
+                  {{ category.name.replace('-', ' ') | titlecase }}
+                </h2>
+
+                <!-- Short Description -->
+                <p class="text-light mb-3">{{ category.description }}</p>
+
+                <!-- CTA Button -->
+                <div class="card-body">
+                  <a
+                    [routerLink]="['/category-list']"
+                    [queryParams]="{ category: category.name }"
+                    class="btn btn-pr btn-lg"
+                  >
+                    View Products
+                  </a>
+                </div>
+              </div>
+            </div>
+          }
         </div>
       </div>
 
-      <!-- Controls -->
+      <!-- ⏪ Carousel Controls -->
       <button class="carousel-control-prev" type="button" (click)="prevSlide()">
         <span class="carousel-control-prev-icon"></span>
       </button>
@@ -47,37 +69,48 @@
     </div>
   </div>
 </div>
-<!-- banner section end -->
+<!-- 🚀 Banner Section End -->
 
 
-
-<!-- Hero Section -->
+<!-- 🔹 Hero Section Wrapper -->
 <section class="background-img" id="home">
-
-
-  <!-- Categories Section -->
+  
+  <!-- 🛍️ Categories Grid Section -->
   <section class="container text-center py-5">
-    <h2 class="fw-bold mb-5 ">Categories</h2>
+    <h2 class="fw-bold mb-5">Categories</h2>
+
     <div class="row g-4">
       @for (category of categories; track category.name) {
-      <div class="col-md-3 col-sm-6">
-        <div class="card border-0 shadow-sm category-card h-100 ">
-          <img [src]="category.image" class="card-img-top" [alt]="category.name" />
-          <div class="card-body">
-            <h5 class="card-title">{{ category.name.replace('-'," ") | titlecase}}</h5>
-            <p class="card-text">{{ category.description }}</p>
-            <a [routerLink]="['/category-list']" fragment="category-list" [queryParams]="{ category: category.name }"
-              class="btn btn-primary btn-sm">
-              View Products
-            </a>
+        <div class="col-md-3 col-sm-6">
+          <div class="card border-0 shadow-sm category-card h-100">
+            
+            <!-- Category Thumbnail -->
+            <img [src]="category.image" class="card-img-top" [alt]="category.name" />
+
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ category.name.replace('-', ' ') | titlecase }}
+              </h5>
+
+              <p class="card-text">{{ category.description }}</p>
+
+              <!-- Navigate to Category List -->
+              <a
+                [routerLink]="['/category-list']"
+                fragment="category-list"
+                [queryParams]="{ category: category.name }"
+                class="btn btn-primary btn-sm"
+              >
+                View Products
+              </a>
+            </div>
           </div>
         </div>
-      </div>
       }
     </div>
   </section>
 
-  <!-- Call to Action -->
+  <!-- ✨ Call-to-Action Section -->
   <section class="cta-section text-light text-center py-5 mb-5">
     <div class="container">
       <h2 class="fw-bold text-light">Ready to Start Shopping?</h2>
@@ -85,4 +118,5 @@
       <a routerLink="/register" class="btn btn-light btn-lg mt-2">Get Started</a>
     </div>
   </section>
+
 </section>

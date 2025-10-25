@@ -1,18 +1,31 @@
+<!-- ================================
+     🛍️ Product List Section
+     Displays all products with a sidebar filter panel
+=================================== -->
 <section class="py-5" id="product-list-id">
   <div class="container-fluid">
+    <!-- Section Title -->
     <h1 class="mb-5 fw-bold text-dark text-center">Our Products</h1>
 
     <div class="d-flex">
-      <!-- Sidebar -->
+      <!-- ===============================
+           🔹 Sidebar: Filter Panel
+           Contains filters (category, price, etc.)
+           Emits 'productsChanged' event to update product list
+      =============================== -->
       <div class="flex-shrink-0 me-5" style="width: 250px;">
         <div class="position-sticky py-5" style="top: 100px;">
           <app-filter-panel (productsChanged)="onProductsChanged($event)"></app-filter-panel>
         </div>
       </div>
 
-      <!-- Products -->
+      <!-- ===============================
+           🔹 Main Content: Product Cards
+           Displays filtered products dynamically
+      =============================== -->
       <div class="flex-grow-1">
         @if (products.length > 0) {
+          <!-- Grid of Product Cards -->
           <div id="product-list" class="row g-4">
             @for (product of filteredProducts; track product.id) {
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -21,6 +34,7 @@
             }
           </div>
         } @else {
+          <!-- Empty State: No Products Found -->
           <div class="text-muted py-5 text-center">
             <h5>No products found</h5>
             <p>Try adjusting filters or check again later.</p>

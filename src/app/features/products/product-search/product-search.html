@@ -1,26 +1,33 @@
-
-
+<!-- Product Search Results Section -->
 <section class="py-5" id="product-list-id">
   <div class="container-fluid">
-<h1>showing results for: {{this.searchTerm}}</h1>
+
+    <!-- Display search term -->
+    <h1 class="mb-4">Showing results for: {{ searchTerm }}</h1>
+
     <div class="d-flex">
 
-
-      <!-- Products -->
+      <!-- Products Container -->
       <div class="flex-grow-1">
+
+        <!-- If products are found -->
         @if (products.length > 0) {
           <div id="product-list" class="row g-4">
             @for (product of products; track product.id) {
               <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <!-- Display individual product card -->
                 <app-product-card [product]="product"></app-product-card>
               </div>
             }
           </div>
-        } @else {
+        } 
+        <!-- If no products are found -->
+        @else {
           <div class="text-muted py-5 text-center">
             <h5>No products found</h5>
           </div>
         }
+
       </div>
     </div>
   </div>

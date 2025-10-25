@@ -1,6 +1,13 @@
+<!-- 🔐 Auth Layout Template -->
+<!-- This layout is used for authentication-related pages such as Login and Register -->
+
+<!-- Global navigation bar (can include logo or basic links) -->
 <div>
   <app-navbar></app-navbar>
 </div>
+
+<!-- Main container for auth components (Login/Register) -->
 <div class="auth-container">
+  <!-- Router outlet will render the active auth component -->
   <router-outlet></router-outlet>
 </div>

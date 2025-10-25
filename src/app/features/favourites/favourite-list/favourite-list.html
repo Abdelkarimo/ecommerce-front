@@ -1,47 +1,93 @@
+<!-- 
+  FavouriteList Template
+  ----------------------
+  Displays the user's list of favourite products with options to:
+  - View product details
+  - Remove items from favourites
+  - Add items directly to the cart
+  Also includes a quick action section on the right.
+-->
+
 <div class="container my-5">
-    <div class="row g-4">
-        <div class="col-lg-8">
-                    <div class="card shadow-sm mb-4">
-                        <div class="card-body p-4">
-                            <h4 class="card-title mb-4 section-title">
-                                <i class="fas fa-heart brand-primary me-2"></i>
-                                Favorites
-                            </h4>
+  <div class="row g-4">
 
-                    <div *ngIf="allFavorites && allFavorites.length > 0; else noFavorites">
-                        <div *ngFor="let item of allFavorites; trackBy: trackById" class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center">
-                              <img [src]="item.data.thumbnail || item.data.image" [alt]="item.data.title" class="rounded-img" style="width:80px; height:80px;">
-                            <div class="flex-grow-1">
-                                <h6 class="mb-1">{{ item.data.title }}</h6>
-                                <div class="text-muted">ID: {{ item.data.id }} • User: {{ item.userId }}</div>
-                                <div class="fw-bold brand-primary mt-1">USD {{ (item.data.price * (1 - item.data.discountPercentage/100)) | number:'1.2-2' }}</div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div class="d-flex align-items-center gap-2 mb-2">
-                                      <button class="btn btn-sm btn-outline-danger" (click)="RemoveFromWishlist(item.data.id)">Remove</button>
-                                      <button class="btn btn-sm btn-outline-success" (click)="AddToCart(item.data.id)">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Left Column: Favourites List -->
+    <div class="col-lg-8">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-4 section-title">
+            <i class="fas fa-heart brand-primary me-2"></i>
+            Favorites
+          </h4>
 
-                    <ng-template #noFavorites>
-                        <div class="text-center text-muted py-5">
-                            <i class="fas fa-heart fa-3x mb-3"></i>
-                            <p class="mb-0">Nothing in favorites yet.</p>
-                        </div>
-                    </ng-template>
+          <!-- If there are favourite items -->
+          <div *ngIf="allFavorites && allFavorites.length > 0; else noFavorites">
+            <div 
+              *ngFor="let item of allFavorites; trackBy: trackById" 
+              class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center"
+            >
+              <!-- Product Image -->
+              <img 
+                [src]="item.data.thumbnail || item.data.image" 
+                [alt]="item.data.title" 
+                class="rounded-img" 
+                style="width:80px; height:80px;"
+              >
+
+              <!-- Product Info -->
+              <div class="flex-grow-1">
+                <h6 class="mb-1">{{ item.data.title }}</h6>
+                <div class="text-muted">
+                  ID: {{ item.data.id }} • User: {{ item.userId }}
                 </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4">
-            <div class="card shadow-sm " >
-                <div class="card-body p-4">
-                    <h5 class="mb-3">Quick Actions</h5>
-                    <p class="text-muted small">You can add favorite items to your cart from here.</p>
+                <div class="fw-bold brand-primary mt-1">
+                  USD {{ (item.data.price * (1 - item.data.discountPercentage/100)) | number:'1.2-2' }}
                 </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="d-flex flex-column align-items-center">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <button 
+                    class="btn btn-sm btn-outline-danger" 
+                    (click)="RemoveFromWishlist(item.data.id)"
+                  >
+                    Remove
+                  </button>
+                  <button 
+                    class="btn btn-sm btn-outline-success" 
+                    (click)="AddToCart(item.data.id)"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <!-- Empty State: No favourites -->
+          <ng-template #noFavorites>
+            <div class="text-center text-muted py-5">
+              <i class="fas fa-heart fa-3x mb-3"></i>
+              <p class="mb-0">Nothing in favorites yet.</p>
+            </div>
+          </ng-template>
+
         </div>
+      </div>
     </div>
+
+    <!-- Right Column: Quick Actions -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h5 class="mb-3">Quick Actions</h5>
+          <p class="text-muted small">
+            You can add favorite items to your cart from here.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

@@ -1,3 +1,9 @@
+/**
+ * OrderConfirmation Component
+ * Displays order confirmation details after successful checkout,
+ * shows a countdown, and redirects the user back to the landing page.
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -19,8 +25,9 @@ export class OrderConfirmation implements OnInit {
   constructor(private dataService: Data, private router: Router) {}
 
   ngOnInit(): void {
-    // Try to fetch the last saved order from the service
+    // Fetch the last saved order from the data service
     const lastOrder = this.dataService.GetLastOrder();
+
     if (lastOrder) {
       this.order = lastOrder;
       this.orderId = lastOrder.orderId;
@@ -28,13 +35,13 @@ export class OrderConfirmation implements OnInit {
       this.userId = lastOrder.userId;
       this.hasOrder = true;
     } else {
-      // If no order found, redirect to landing page after a short delay
+      // No order found — redirect to landing page after a short delay
       setTimeout(() => {
         this.router.navigate(['/landing']);
       }, 2000);
     }
 
-    // start redirect timer
+    // Start countdown timer for redirection
     const timer = setInterval(() => {
       this.countdown--;
       if (this.countdown <= 0) {
