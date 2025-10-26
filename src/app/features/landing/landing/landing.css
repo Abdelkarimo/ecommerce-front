@@ -75,7 +75,7 @@ section h2 {
   transform: scale(1.05);
 }
 
- .btn-pr a.btn:hover {
+.btn-pr a.btn:hover {
   background-color: #e65500; /* darker orange on hover */
   transform: scale(1.05);
 }
@@ -164,8 +164,6 @@ section h2 {
   transform: scale(1.05);
 }
 
-
-
 .banner_bg_main {
   width: 100%;
   background-image: url('/assets/54783.jpg');
@@ -229,6 +227,7 @@ section h2 {
   float: left;
   text-align: center;
   padding: 10px 0px;
+  margin-top: 20px;
 }
 
 /* logo section end */
@@ -243,8 +242,6 @@ section h2 {
 .containt_main {
   display: flex;
 }
-
-
 
 .header_box {
   order: 2;
@@ -416,14 +413,12 @@ a:hover {
 
 /* banner section end */
 
-
 .user-info img {
   object-fit: cover;
 }
 .user-info span {
   font-weight: 400;
 }
-
 
 /* Category Slider (Top Banner) */
 .category-carousel {
@@ -516,7 +511,6 @@ a:hover {
     font-size: 1.5rem;
   }
 }
-
 
 /* Category Slider (Top Banner) */
 .category-carousel {
