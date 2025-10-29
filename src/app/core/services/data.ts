@@ -83,6 +83,7 @@ export class Data {
 
     currentUser.cart = [];
     this.updateCurrentUser(currentUser);
+    this.cartChanged.emit();
     return true;
   }
 
