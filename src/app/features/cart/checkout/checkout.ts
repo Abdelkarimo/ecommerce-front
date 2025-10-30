@@ -228,7 +228,7 @@ this.http.post("https://api.fatora.io/v1/payments/checkout",{
     "email" : "mahmoud@example.com"
 },
 "success_url" : window.location.protocol + "//" + window.location.host + "/order-confirmation",
-"failure_url" : window.location.protocol + "//" + window.location.host + "/failure",
+"failure_url" : window.location.protocol + "//" + window.location.host + "/order-failure",
 
 },httpOptions).subscribe((response:any)=>{
   window.location.href = response.result.checkout_url;
