@@ -29,7 +29,6 @@ export class OrderConfirmation implements OnInit {
     // Fetch the last saved order from the data service
     const lastOrder = this.dataService.GetLastOrder();
      this.dataService.clearCart();
-     console.log(this.auth.getCurrentUser());
     if (lastOrder) {
       this.order = lastOrder;
       this.orderId = lastOrder.orderId;
