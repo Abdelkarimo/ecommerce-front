@@ -109,7 +109,7 @@ export class ProductDetail implements OnInit {
   // =======================
   addToCart() {
     if (this.productService.addToCart(this.productId, this.quantity)) {
-      throw 'Product added to cart successfully!';
+      //throw 'Product added to cart successfully!';
     } else {
       throw 'Please login to add products to cart';
     }

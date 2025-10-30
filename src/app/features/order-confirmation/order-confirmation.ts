@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Data } from '../../core/services/data';
+import { Auth } from '../../core/auth/auth';
 
 @Component({
   selector: 'app-order-confirmation',
@@ -22,12 +23,13 @@ export class OrderConfirmation implements OnInit {
   order: any = null;
   hasOrder: boolean = false;
 
-  constructor(private dataService: Data, private router: Router) {}
+  constructor(private dataService: Data, private router: Router,private auth:Auth) {}
 
   ngOnInit(): void {
     // Fetch the last saved order from the data service
     const lastOrder = this.dataService.GetLastOrder();
-
+     this.dataService.clearCart();
+     console.log(this.auth.getCurrentUser());
     if (lastOrder) {
       this.order = lastOrder;
       this.orderId = lastOrder.orderId;
@@ -35,6 +37,7 @@ export class OrderConfirmation implements OnInit {
       this.userId = lastOrder.userId;
       this.hasOrder = true;
     } else {
+     
       // No order found — redirect to landing page after a short delay
       setTimeout(() => {
         this.router.navigate(['/']);
@@ -49,6 +52,5 @@ export class OrderConfirmation implements OnInit {
         this.router.navigate(['/']);
       }
     }, 1000);
-  console.log(this.dataService.getCartItemsCount());
   }
 }

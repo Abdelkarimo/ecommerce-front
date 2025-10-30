@@ -215,7 +215,6 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
     this.router.navigate(['/order-confirmation']);
   }
 
@@ -238,7 +237,6 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
     alert('Redirecting to PayPal...');
     this.router.navigate(['/order-confirmation']);
   }
@@ -262,7 +260,7 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
+    
     alert('Bank transfer details submitted! Awaiting verification.');
     this.router.navigate(['/order-confirmation']);
   }
