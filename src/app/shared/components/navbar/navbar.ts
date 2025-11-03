@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Data } from '../../../core/services/data';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLink, RouterLinkActive, FormsModule],
+  imports: [CommonModule, RouterModule, RouterLink, FormsModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css'],
 })

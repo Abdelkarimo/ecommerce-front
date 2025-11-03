@@ -14,6 +14,9 @@ import { getAnalytics } from "firebase/analytics";
         appId: "1:436677274375:web:6243d72b7cfc8edd4e33a2",
         measurementId: "G-YHVJQN21CL"
     },
+    fatora:{
+        apiKey:"bf56aaca-79f2-4927-8704-24a094ef96e6"
+    },
     production: false
     };
 

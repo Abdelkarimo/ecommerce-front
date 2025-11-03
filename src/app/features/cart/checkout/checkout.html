@@ -165,82 +165,8 @@
               </select>
             </div>
 
-            <!-- Credit Card Fields -->
-            <div *ngIf="selectedPaymentMethod === 'credit-card'" class="payment-section">
-              <h5 class="mb-3">
-                <i class="fas fa-credit-card text-primary"></i> Credit Card Details
-              </h5>
-
-              <div class="row g-3">
-                <!-- Card Number -->
-                <div class="col-12">
-                  <label for="cardNumber" class="form-label">Card Number *</label>
-                  <input
-                    type="text"
-                    id="cardNumber"
-                    class="form-control"
-                    [(ngModel)]="cardNumber"
-                    (input)="formatCardNumber()"
-                    placeholder="1234 1234 1234 1234"
-                    maxlength="19"
-                    required
-                  >
-                  <small class="text-muted">Test card: 4242 4242 4242 4242</small>
-                  <span *ngIf="isCardFieldInvalid(cardNumber)" class="text-danger small">Card number is required.</span>
-                </div>
-
-                <!-- Cardholder Name -->
-                <div class="col-12">
-                  <label for="cardName" class="form-label">Cardholder Name *</label>
-                  <input
-                    type="text"
-                    id="cardName"
-                    class="form-control"
-                    [(ngModel)]="cardName"
-                    placeholder="Cardholder Name"
-                    required
-                  >
-                  <span *ngIf="isCardFieldInvalid(cardName)" class="text-danger small">Cardholder name is required.</span>
-                </div>
-
-                <!-- Expiry Date -->
-                <div class="col-md-6">
-                  <label for="expiryDate" class="form-label">Expiry Date *</label>
-                  <input
-                    type="text"
-                    id="expiryDate"
-                    class="form-control"
-                    [(ngModel)]="expiryDate"
-                    (input)="formatExpiryDate()"
-                    placeholder="MM/YY"
-                    maxlength="5"
-                    required
-                  >
-                  <span *ngIf="isCardFieldInvalid(expiryDate)" class="text-danger small">Expiry date is required.</span>
-                </div>
-
-                <!-- CVV -->
-                <div class="col-md-6">
-                  <label for="cvv" class="form-label">CVV *</label>
-                  <input
-                    type="text"
-                    id="cvv"
-                    class="form-control"
-                    [(ngModel)]="cvv"
-                    placeholder="123"
-                    maxlength="3"
-                    required
-                  >
-                  <span *ngIf="isCardFieldInvalid(cvv)" class="text-danger small">CVV is required.</span>
-                </div>
-              </div>
-
-              <div class="alert alert-info mt-3 mb-0">
-                <i class="fas fa-lock"></i>
-                <small> Your card information is encrypted and secure</small>
-              </div>
-            </div>
-
+       
+ 
             <!-- PayPal Fields -->
             <div *ngIf="selectedPaymentMethod === 'paypal'" class="payment-section">
               <h5 class="mb-3">
@@ -339,15 +265,20 @@
                   class="btn btn-outline-success btn-lg w-100 py-3"
                   (click)="processOrder()">
                 <i class="fas fa-lock me-2"></i>
-                <span *ngIf="selectedPaymentMethod === 'credit-card'">
-                  Complete Payment - USD {{ total | number:'1.2-2' }}
+                @if(selectedPaymentMethod === 'credit-card' ){
+                 <span >
+                  Complete Payment via Fatora- USD {{ total | number:'1.2-2' }}
                 </span>
-                <span *ngIf="selectedPaymentMethod === 'paypal'">
+                }
+                @if(selectedPaymentMethod === 'paypal')
+               { <span >
                   Continue with PayPal
-                </span>
+                </span>}
+                @else
+                {
                 <span *ngIf="selectedPaymentMethod === 'bank-transfer'">
                   Submit Transfer Details
-                </span>
+                </span>}
               </button>
             </div>
           </div>

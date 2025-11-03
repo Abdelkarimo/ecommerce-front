@@ -14,7 +14,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../../core/auth/auth';
 import { Data } from '../../../core/services/data';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-checkout',
   imports: [FormsModule, CommonModule],
@@ -62,7 +63,8 @@ export class Checkout implements OnInit {
   constructor(
     private router: Router,
     private auth: Auth,
-    private dataService: Data
+    private dataService: Data,
+    private http: HttpClient
   ) {}
 
   // Load cart details and calculate totals
@@ -198,11 +200,6 @@ export class Checkout implements OnInit {
 
   // ===== Payment Processing Methods =====
   processCreditCard(): void {
-    if (!this.cardNumber || !this.cardName || !this.expiryDate || !this.cvv) {
-      alert('Please fill in all credit card fields');
-      return;
-    }
-
     const orderId = 'ORD-' + Date.now();
     const userId = this.auth.getCurrentUser()?.id;
     const order = {
@@ -215,8 +212,30 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
-    this.router.navigate(['/order-confirmation']);
+     const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'api_key': environment.fatora.apiKey
+      })
+    };
+this.http.post("https://api.fatora.io/v1/payments/checkout",{
+"amount":order.amount,
+"currency":"USD",
+"order_id":order.orderId,
+"client" : {
+    "name" : "mahmoud",
+    "id" : "123456",
+    "email" : "mahmoud@example.com"
+},
+"success_url" : window.location.protocol + "//" + window.location.host + "/order-confirmation",
+"failure_url" : window.location.protocol + "//" + window.location.host + "/order-failure",
+
+},httpOptions).subscribe((response:any)=>{
+  window.location.href = response.result.checkout_url;
+},error=>{
+  console.error(error);
+}
+);
   }
 
   processPayPal(): void {
@@ -238,7 +257,6 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
     alert('Redirecting to PayPal...');
     this.router.navigate(['/order-confirmation']);
   }
@@ -262,7 +280,7 @@ export class Checkout implements OnInit {
     };
 
     this.dataService.saveOrder(order);
-    this.dataService.clearCart();
+    
     alert('Bank transfer details submitted! Awaiting verification.');
     this.router.navigate(['/order-confirmation']);
   }
