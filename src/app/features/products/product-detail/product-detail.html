@@ -12,7 +12,7 @@
 
         <!-- Thumbnail gallery -->
         <div class="d-flex flex-wrap gap-2">
-          @for(img of product.images; track product.id) {
+          @for(img of product.images; track $index) {
             <img 
               [src]="img" 
               (click)="selectedImage = img" 
@@ -98,7 +98,7 @@
         <h4 class="fw-bold mb-3">Customer Reviews</h4>
 
         <!-- Existing reviews -->
-        @for(review of product.reviews; track product.id){
+        @for(review of product.reviews; track $index){
           <div class="card mb-3 border-0 shadow-sm">
             <div class="card-body">
               <div class="d-flex align-items-center mb-2">

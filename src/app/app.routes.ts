@@ -19,6 +19,7 @@ import { Checkout } from './features/cart/checkout/checkout';
 import { FavouriteList } from './features/favourites/favourite-list/favourite-list';
 import { CategoryList } from './features/category-list/category-list';
 import { OrderConfirmation } from './features/order-confirmation/order-confirmation';
+import { OrderFailure } from './features/order-failure/order-failure';
 
 // ⚙️ Admin
 import { AdminDashboard } from './features/admin/admin-dashboard/admin-dashboard';
@@ -48,6 +49,7 @@ export const routes: Routes = [
       { path: 'cart', component: Cart, canActivate: [authGuard] },
       { path: 'checkout', component: Checkout, canActivate: [authGuard] },
       { path: 'order-confirmation', component: OrderConfirmation, canActivate: [authGuard] },
+      { path: 'order-failure', component: OrderFailure, canActivate: [authGuard] },
       { path: 'favourites', component: FavouriteList, canActivate: [authGuard] },
 
       // Admin routes (require authentication + admin role)

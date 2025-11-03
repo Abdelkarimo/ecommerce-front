@@ -5,6 +5,7 @@ import { SocialAuth } from '../auth/social-auth';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -83,6 +84,7 @@ export class Data {
 
     currentUser.cart = [];
     this.updateCurrentUser(currentUser);
+    this.cartChanged.emit();
     return true;
   }
 
@@ -191,8 +193,9 @@ export class Data {
     const orders = JSON.parse(localStorage.getItem('orders') || '[]');
     return orders.length ? orders[orders.length - 1] : null;
   }
-
-  getAllOrders() {
-    return JSON.parse(localStorage.getItem('orders') || '[]');
+  removeOrder(deletedOrderId: string) {
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+    const updatedOrders=orders.filter((order:any)=>order.orderId!==deletedOrderId)
+    localStorage.setItem('orders',JSON.stringify(updatedOrders));
   }
 }

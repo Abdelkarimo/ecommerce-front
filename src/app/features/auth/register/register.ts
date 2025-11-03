@@ -32,7 +32,7 @@ import {
   standalone: true,
   templateUrl: './register.html',
   styleUrls: ['./register.css'],
-  imports: [FormsModule, RouterLink, RouterLinkActive, CommonModule],
+  imports: [FormsModule, RouterLink, CommonModule],
 })
 export class Register {
   /** ✏️ Form model for manual registration */

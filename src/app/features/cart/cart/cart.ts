@@ -17,7 +17,7 @@ import { Data } from '../../../core/services/data';
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })
-export class Cart implements OnInit, OnDestroy {
+export class Cart implements OnInit {
   cartProductInfo: any; // Raw cart items from user data
   allProducts: any[] = []; // Full product details with quantity
   total: number = 0; // Total cart amount
@@ -93,11 +93,6 @@ export class Cart implements OnInit, OnDestroy {
   /** 🔖 TrackBy function for ngFor */
   trackById(index: number, item: any) {
     return item?.data?.id ?? index;
-  }
-
-  ngOnDestroy(): void {
-    // Cart data is managed by auth service in real-time
-    console.log('Cart component destroyed. Cart data is managed by auth service.');
   }
 
   /** ➡ Navigate to checkout */
