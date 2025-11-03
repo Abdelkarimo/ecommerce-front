@@ -1,4 +1,4 @@
-<!-- 
+<!--
   FavouriteList Template
   ----------------------
   Displays the user's list of favourite products with options to:
@@ -22,17 +22,11 @@
 
           <!-- If there are favourite items -->
           <div *ngIf="allFavorites && allFavorites.length > 0; else noFavorites">
-            <div 
-              *ngFor="let item of allFavorites; trackBy: trackById" 
-              class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center"
-            >
+            <div *ngFor="let item of allFavorites; trackBy: trackById"
+              class="d-flex gap-3 mb-3 pb-3 border-bottom align-items-center">
               <!-- Product Image -->
-              <img 
-                [src]="item.data.thumbnail || item.data.image" 
-                [alt]="item.data.title" 
-                class="rounded-img" 
-                style="width:80px; height:80px;"
-              >
+              <img [src]="item.data.thumbnail || item.data.image" [alt]="item.data.title" class="rounded-img"
+                style="width:80px; height:80px;">
 
               <!-- Product Info -->
               <div class="flex-grow-1">
@@ -48,16 +42,10 @@
               <!-- Action Buttons -->
               <div class="d-flex flex-column align-items-center">
                 <div class="d-flex align-items-center gap-2 mb-2">
-                  <button 
-                    class="btn btn-sm btn-outline-danger" 
-                    (click)="RemoveFromWishlist(item.data.id)"
-                  >
+                  <button class="btn btn-sm btn-outline-danger" (click)="RemoveFromWishlist(item.data.id)">
                     Remove
                   </button>
-                  <button 
-                    class="btn btn-sm btn-outline-success" 
-                    (click)="AddToCart(item.data.id)"
-                  >
+                  <button class="btn btn-sm btn-outline-success" (click)="AddToCart(item.data.id)">
                     Add to Cart
                   </button>
                 </div>
